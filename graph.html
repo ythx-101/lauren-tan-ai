@@ -298,7 +298,7 @@ function trunc(s,maxW){
   return s;
 }
 function shortLabel(n){
-  if(n.lt==='stage')return n.cap;
+  if(n.lt==='stage')return n.cap||'';
   if(n.type==='time')return MOB?n.label.slice(2):n.label;
   if(n.type==='person')return 'Lauren Tan';
   return trunc(n.label,14);
@@ -307,7 +307,7 @@ nodes.forEach(n=>{
   const el=document.createElement('div');
   const ty=/^time-stage/.test(n.id)?'stage':n.type;
   n.lt=ty;el.className='lab '+ty;
-  el.textContent=ty==='stage'?n.cap:shortLabel(n);
+  el.textContent=ty==='stage'?'':shortLabel(n); /* stage cap is only known after layout() */
   el.dataset.id=n.id;n.el=el;labelsEl.appendChild(el);
 });
 function measure(){
@@ -714,6 +714,8 @@ function resize(){
   nodes.forEach(n=>{if(n.lt==='time'||n.lt==='stage')n.el.textContent=shortLabel(n);});
   measure();
   layout();
+  nodes.forEach(n=>{if(n.lt==='stage')n.el.textContent=shortLabel(n);}); /* n.cap is set by layout() */
+  measure();
   if(refit){d3.select(cv).call(zoom.transform,d3.zoomIdentity);T=d3.zoomIdentity;}
   else if(T.k!==1||T.x||T.y){ /* keep the disk centre where it was on screen: no jump */
     const t=d3.zoomIdentity.translate(T.x+T.k*(oCX-CX),T.y+T.k*(oCY-CY)).scale(T.k);
