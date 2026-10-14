@@ -108,7 +108,7 @@ let W=innerWidth,H=innerHeight,DPR=1,MOB=W<700;
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 ui.metaT.textContent=D.meta.title;
 ui.metaS.textContent=D.meta.subtitle;
-ui.nav.innerHTML='<a href="./index.html">长文</a> · <a href="./graph.html">星云图</a> · <span class="cur">星系</span>';
+ui.nav.innerHTML='<a href="./index.html">长文</a> · <a href="./graph.html">星云图</a> · <span class="cur">星系</span> · <a href="https://github.com/ythx-101/lauren-tan-ai" target="_blank" rel="noopener" title="喜欢就点个 Star">⭐ Star</a>';
 ui.cred.innerHTML='<a href="'+D.meta.credit_kat.url+'" target="_blank" rel="noopener">'+esc(D.meta.credit_kat.text)+'</a><br>'
   +'<a href="'+D.meta.credit_lauren.url+'" target="_blank" rel="noopener">'+esc(D.meta.credit_lauren.text)+'</a><br>'
   +'<span>'+esc(D.meta.compiled)+'</span>';
