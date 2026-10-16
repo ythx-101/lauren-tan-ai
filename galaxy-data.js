@@ -1,7 +1,7 @@
 window.GALAXY_DATA={
  "meta": {
   "title": "every mind is a microcosm that holds galaxies of ideas",
-  "subtitle": "Lauren Tan (@poteto) · 6 galaxies · 20 themes · 78 stars — every star a post",
+  "subtitle": "Lauren Tan (@poteto) · 6 galaxies · 20 themes · 79 stars — every star a post",
   "credit_kat": {
    "text": "Inspired by Kat ⊷ the Poet Engineer (@poetengineer__)",
    "url": "https://x.com/poetengineer__/status/2110060584138084373"
@@ -667,6 +667,18 @@ window.GALAXY_DATA={
         "https://x.com/poteto/status/2109116030761230571",
         "https://x.com/poteto/status/2109356992032817621"
        ]
+      },
+      {
+       "n": 79,
+       "date": "2026-10-14",
+       "kind": "推文",
+       "title": "\"perhaps one of the most durable parts of pstack are its engineering principles\"",
+       "summary": "10–20 行的极短原则技能，多从纠正 agent 的会话中提炼；/poteto-mode 放原则索引，要求 agent 在回复里点名用到的原则及其改变的决定；模型越强，pstack 越会压缩成短原则",
+       "url": "https://x.com/poteto/status/2110496830429839869",
+       "urls": [
+        "https://x.com/poteto/status/2110496830429839869",
+        "https://github.com/cursor/plugins/blob/main/pstack/docs/guide/08-principles.md"
+       ]
       }
      ]
     },
@@ -794,7 +806,7 @@ window.GALAXY_DATA={
      ]
     }
    ],
-   "count": 18
+   "count": 19
   },
   {
    "id": "g4",
