@@ -1,0 +1,33 @@
+# 土豆 Lauren Tan 的 AI 用法全集
+
+> Lauren Tan（@poteto，土豆）怎么用 AI 和编程 agent：把她散落在 X、GitHub、演讲里的方法论整理成一页中文长文，含 79 条原帖索引和 10 篇第三方解读。整理：青月。
+
+核心观点：吞吐量来自信任，信任来自验证和环境，而不是来自开更多 agent。
+
+第三方整理 Barnaby Robson《On pstack》（页面 T7）归纳的 6 个心智模型：米其林厨房、信任阶梯、内外环、园丁、手眼和地图、量一百次切一次。
+
+- 信任阶梯：从微操一个 agent，到验证技能给 agent "手和眼睛"，再到 agent 自己合并 PR。
+- 内外环：Grok Bot 是外环，Cursor Projects 是内环。
+- pstack：她的个人技能集和工程原则，把观察到的失败模式全部变成技能。
+
+## 页面
+
+- [长文](https://ythx-101.github.io/lauren-tan-ai/): 方法论综合、79 条原帖索引、10 篇第三方解读，主入口；用 `#e1`…`#e79` 定位原帖，`#t1`…`#t10` 定位第三方解读
+- [星云图](https://ythx-101.github.io/lauren-tan-ai/graph.html): 按时间排列的同心盘视图
+- [星系](https://ythx-101.github.io/lauren-tan-ai/galaxy.html): 每条原帖一颗星，按主题聚成星系
+
+## 关键外部来源
+
+- [Lauren Tan 的 X 主页](https://x.com/poteto)
+- [pstack](https://github.com/cursor/plugins/tree/main/pstack)
+- [noodle](https://github.com/poteto/noodle)
+
+## 声明
+
+- 引文保留英文原文，中文为整理者概括，版权归原作者。
+- PR 数、token 数等数字均为 Lauren Tan 本人自述，未独立核实。
+- 网上流传的若干"她说过的话"，页面核对逐字稿后确认她本人没说过，详见页面「需要注意 / 未核实」一节。
+
+## English
+
+A curated Chinese-language guide to how Lauren Tan (@poteto) uses AI coding agents: trust ladder, verification skills, inner/outer loop (Cursor Projects and Grok Bot), and pstack. It indexes 79 of her posts and articles and 10 third-party write-ups. Numbers are self-reported and unverified.
