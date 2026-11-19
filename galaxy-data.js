@@ -1,7 +1,7 @@
 window.GALAXY_DATA={
  "meta": {
   "title": "every mind is a microcosm that holds galaxies of ideas",
-  "subtitle": "Lauren Tan (@poteto) · 6 galaxies · 20 themes · 79 stars — every star a post",
+  "subtitle": "Lauren Tan (@poteto) · 6 galaxies · 21 themes · 99 stars — every star a post",
   "credit_kat": {
    "text": "Inspired by Kat ⊷ the Poet Engineer (@poetengineer__)",
    "url": "https://x.com/poetengineer__/status/2110060584138084373"
@@ -10,7 +10,7 @@ window.GALAXY_DATA={
    "text": "Content: Lauren Tan (@poteto) on X & GitHub",
    "url": "https://x.com/poteto"
   },
-  "compiled": "整理：青月 · 2026-10-14 · 数字均为她自述"
+  "compiled": "整理：青月 · 2026-10-14，2026-11-19 更新 · 数字均为她自述"
  },
  "galaxies": [
   {
@@ -131,6 +131,17 @@ window.GALAXY_DATA={
        "urls": [
         "https://x.com/poteto/status/2059793670359204225"
        ]
+      },
+      {
+       "n": 88,
+       "date": "2026-11-03",
+       "kind": "推文",
+       "title": "\"i now consider adversarial reviews mostly a waste of tokens\"",
+       "summary": "转向：对抗评审大多浪费 token",
+       "url": "https://x.com/poteto/status/2117437607940681849",
+       "urls": [
+        "https://x.com/poteto/status/2117437607940681849"
+       ]
       }
      ]
     },
@@ -190,11 +201,23 @@ window.GALAXY_DATA={
        "urls": [
         "https://x.com/poteto/status/2108290818746528017"
        ]
+      },
+      {
+       "n": 91,
+       "date": "2026-11-06",
+       "kind": "推文",
+       "title": "\"hot take: you don't need a software factory, and i don't love the term. it's just marketing\"",
+       "summary": "不需要“软件工厂”，需要好工程 + 确定性",
+       "url": "https://x.com/poteto/status/2118613050462728659",
+       "urls": [
+        "https://x.com/poteto/status/2118613050462728659",
+        "https://x.com/poteto/status/2118904450106654888"
+       ]
       }
      ]
     }
    ],
-   "count": 13
+   "count": 15
   },
   {
    "id": "g1",
@@ -333,9 +356,74 @@ window.GALAXY_DATA={
        ]
       }
      ]
+    },
+    {
+     "id": "g1t3",
+     "name": "formal verification & statecharts",
+     "name_zh": "形式化验证与 statechart",
+     "stars": [
+      {
+       "n": 81,
+       "date": "2026-10-18",
+       "kind": "推文",
+       "title": "\"pstack v0.15.27 ships with a new skill /create-formal-verification-skill!\"",
+       "summary": "新技能 /create-formal-verification-skill（TLA+、Kani）",
+       "url": "https://x.com/poteto/status/2111926622278521253",
+       "urls": [
+        "https://x.com/poteto/status/2111926622278521253",
+        "https://x.com/poteto/status/2112736749281759566"
+       ]
+      },
+      {
+       "n": 85,
+       "date": "2026-10-29",
+       "kind": "推文",
+       "title": "\"the /statechart skill in pstack v0.15.36 is now stable and ready for use!\"",
+       "summary": "/statechart 稳定：把 TLA+ 模型画成状态图",
+       "url": "https://x.com/poteto/status/2115880102601101414",
+       "urls": [
+        "https://x.com/poteto/status/2115880102601101414"
+       ]
+      },
+      {
+       "n": 90,
+       "date": "2026-11-05",
+       "kind": "推文",
+       "title": "\"while i'm quite bullish on formal methods, i think it's worth tempering expectations\"",
+       "summary": "给形式化验证降温：规格对不对只有你能判断",
+       "url": "https://x.com/poteto/status/2118416074601545968",
+       "urls": [
+        "https://x.com/poteto/status/2118416074601545968",
+        "https://x.com/poteto/status/2118419507685544058"
+       ]
+      },
+      {
+       "n": 93,
+       "date": "2026-11-08",
+       "kind": "推文",
+       "title": "\"use /create-formal-verification-skill to model these state machines, one skill per subsystem\"",
+       "summary": "每个子系统一个形式化验证技能",
+       "url": "https://x.com/poteto/status/2119521036660314339",
+       "urls": [
+        "https://x.com/poteto/status/2119521036660314339",
+        "https://x.com/poteto/status/2119606119559782488"
+       ]
+      },
+      {
+       "n": 94,
+       "date": "2026-11-09",
+       "kind": "推文",
+       "title": "\"a golden age of software testing and verification\"",
+       "summary": "测试与验证的黄金时代，是时候重写所有软件",
+       "url": "https://x.com/poteto/status/2119824409087348984",
+       "urls": [
+        "https://x.com/poteto/status/2119824409087348984"
+       ]
+      }
+     ]
     }
    ],
-   "count": 10
+   "count": 15
   },
   {
    "id": "g2",
@@ -391,6 +479,29 @@ window.GALAXY_DATA={
        "urls": [
         "https://x.com/poteto/status/2106894888814137460"
        ]
+      },
+      {
+       "n": 80,
+       "date": "2026-10-16",
+       "kind": "推文",
+       "title": "\"how do you trust your agents' work more?\" + inverse pyramid",
+       "summary": "倒金字塔清单：代码库 > 静态分析 > 散文 > 人工评审",
+       "url": "https://x.com/poteto/status/2111133080526495985",
+       "urls": [
+        "https://x.com/poteto/status/2111133080526495985"
+       ]
+      },
+      {
+       "n": 95,
+       "date": "2026-11-11",
+       "kind": "演讲",
+       "title": "AI Engineer Code Summit《All Code Is Slop (Except Mine)》",
+       "summary": "AIE 演讲：把每次纠正变成确定性检查",
+       "url": "https://www.youtube.com/watch?v=O_zcc6Xl12g",
+       "urls": [
+        "https://www.youtube.com/watch?v=O_zcc6Xl12g",
+        "https://x.com/poteto/status/2121673563489140863"
+       ]
       }
      ]
     },
@@ -430,6 +541,28 @@ window.GALAXY_DATA={
        "url": "https://x.com/poteto/status/2090181049754206370",
        "urls": [
         "https://x.com/poteto/status/2090181049754206370"
+       ]
+      },
+      {
+       "n": 83,
+       "date": "2026-10-26",
+       "kind": "推文",
+       "title": "\"so many gems and great tips in this talk from @yminsky about how to improve your codebase for agents\"",
+       "summary": "转述 Ron Minsky：类型、expect tests、形式化方法的 ROI 变了",
+       "url": "https://x.com/poteto/status/2114626630429913383",
+       "urls": [
+        "https://x.com/poteto/status/2114626630429913383"
+       ]
+      },
+      {
+       "n": 97,
+       "date": "2026-11-14",
+       "kind": "推文",
+       "title": "\"quick fixes considered harmful\"",
+       "summary": "快修有害：创可贴会被下一个 agent 复制",
+       "url": "https://x.com/poteto/status/2121646643124809848",
+       "urls": [
+        "https://x.com/poteto/status/2121646643124809848"
        ]
       }
      ]
@@ -562,11 +695,23 @@ window.GALAXY_DATA={
        "urls": [
         "https://x.com/poteto/status/2107913381751730352"
        ]
+      },
+      {
+       "n": 84,
+       "date": "2026-10-29",
+       "kind": "推文（回复）",
+       "title": "\"this is why we just banned comments in our codebase\"",
+       "summary": "代码库禁注释：agent 会用注释给 hack 找理由",
+       "url": "https://x.com/poteto/status/2115644484226777581",
+       "urls": [
+        "https://x.com/poteto/status/2115644484226777581",
+        "https://x.com/poteto/status/2115664844863201667"
+       ]
       }
      ]
     }
    ],
-   "count": 17
+   "count": 22
   },
   {
    "id": "g3",
@@ -678,6 +823,28 @@ window.GALAXY_DATA={
        "urls": [
         "https://x.com/poteto/status/2110496830429839869",
         "https://github.com/cursor/plugins/blob/main/pstack/docs/guide/08-principles.md"
+       ]
+      },
+      {
+       "n": 82,
+       "date": "2026-10-24",
+       "kind": "推文（回复）",
+       "title": "\"the more capable models get, the less instructions they need\"",
+       "summary": "技能会越缩越短，最后只是存下来的提示词",
+       "url": "https://x.com/poteto/status/2114099131845423142",
+       "urls": [
+        "https://x.com/poteto/status/2114099131845423142"
+       ]
+      },
+      {
+       "n": 98,
+       "date": "2026-11-16",
+       "kind": "pstack 更新",
+       "title": "pstack 0.15.43：\"shorter skill texts, worker.md, and Opus-first routing capped at xhigh\"",
+       "summary": "pstack 0.15.43：更短、更少子 agent、Opus 优先",
+       "url": "https://github.com/cursor/plugins/pull/1249",
+       "urls": [
+        "https://github.com/cursor/plugins/pull/1249"
        ]
       }
      ]
@@ -802,11 +969,22 @@ window.GALAXY_DATA={
         "https://x.com/poteto/status/2109885001584292091",
         "https://x.com/poteto/status/2110047236369547621"
        ]
+      },
+      {
+       "n": 92,
+       "date": "2026-11-08",
+       "kind": "推文",
+       "title": "\"knowing the right words is very powerful\"",
+       "summary": "不会描述时先借词汇：/sharpen + /in-your-own-words",
+       "url": "https://x.com/poteto/status/2119313621188849806",
+       "urls": [
+        "https://x.com/poteto/status/2119313621188849806"
+       ]
       }
      ]
     }
    ],
-   "count": 19
+   "count": 22
   },
   {
    "id": "g4",
@@ -862,6 +1040,18 @@ window.GALAXY_DATA={
        "urls": [
         "https://x.com/poteto/status/2107510472601985336"
        ]
+      },
+      {
+       "n": 96,
+       "date": "2026-11-14",
+       "kind": "访谈",
+       "title": "YC Lightcone《The Rise Of AI Coworkers》（与 Roman Ugarte）",
+       "summary": "YC Lightcone 访谈：探索者、工厂只做维护",
+       "url": "https://www.ycombinator.com/library/n0-the-rise-of-ai-coworkers",
+       "urls": [
+        "https://www.ycombinator.com/library/n0-the-rise-of-ai-coworkers",
+        "https://www.youtube.com/watch?v=y1-9yeYLJUo"
+       ]
       }
      ]
     },
@@ -902,11 +1092,34 @@ window.GALAXY_DATA={
        "urls": [
         "https://x.com/poteto/status/2108592835046101383"
        ]
+      },
+      {
+       "n": 87,
+       "date": "2026-10-31",
+       "kind": "推文",
+       "title": "\"here's a short grok bot guide on how i create high quality bots and manage my team\"",
+       "summary": "Grok Bot 带队指南：少而精的 bot，语音倾倒 + 复述",
+       "url": "https://x.com/poteto/status/2116576229319233596",
+       "urls": [
+        "https://x.com/poteto/status/2116576229319233596"
+       ]
+      },
+      {
+       "n": 99,
+       "date": "2026-11-18",
+       "kind": "长文",
+       "title": "\"Automate Anything with Grok Bot\"",
+       "summary": "长文：用 Grok Bot 自动化任何事（目标 + 流程）",
+       "url": "https://x.com/poteto/article/2123159537016533493",
+       "urls": [
+        "https://x.com/poteto/article/2123159537016533493",
+        "https://x.com/poteto/status/2123159537016533493"
+       ]
       }
      ]
     }
    ],
-   "count": 7
+   "count": 10
   },
   {
    "id": "g5",
@@ -972,6 +1185,17 @@ window.GALAXY_DATA={
        "url": "https://x.com/poteto/status/2108279582088671583",
        "urls": [
         "https://x.com/poteto/status/2108279582088671583"
+       ]
+      },
+      {
+       "n": 89,
+       "date": "2026-11-04",
+       "kind": "推文",
+       "title": "\"how we ship crazy amounts of code (30x'd) without reading it\"",
+       "summary": "不读代码也能 30 倍出货，性能反而更好（自述）",
+       "url": "https://x.com/poteto/status/2118017093677494706",
+       "urls": [
+        "https://x.com/poteto/status/2118017093677494706"
        ]
       }
      ]
@@ -1075,11 +1299,22 @@ window.GALAXY_DATA={
        "urls": [
         "https://x.com/poteto/status/2109110547824378140"
        ]
+      },
+      {
+       "n": 86,
+       "date": "2026-10-30",
+       "kind": "推文",
+       "title": "\"code used to arrive one drop at a time… like a violent river\"",
+       "summary": "代码像河流涌来：用系统、框架、语言驯服它",
+       "url": "https://x.com/poteto/status/2116191971714953262",
+       "urls": [
+        "https://x.com/poteto/status/2116191971714953262"
+       ]
       }
      ]
     }
    ],
-   "count": 13
+   "count": 15
   }
  ]
 };

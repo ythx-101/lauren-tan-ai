@@ -1,6 +1,6 @@
 # 土豆 Lauren Tan 的 AI 用法全集
 
-> Lauren Tan（@poteto，土豆）怎么用 AI 和编程 agent：把她散落在 X、GitHub、演讲里的方法论整理成一页中文长文，含 79 条原帖索引和 10 篇第三方解读。整理：青月。
+> Lauren Tan（@poteto，土豆）怎么用 AI 和编程 agent：把她散落在 X、GitHub、演讲里的方法论整理成一页中文长文，含 99 条原帖索引和 13 篇第三方解读。整理：青月。
 
 核心观点：吞吐量来自信任，信任来自验证和环境，而不是来自开更多 agent。
 
@@ -12,7 +12,7 @@
 
 ## 页面
 
-- [长文](https://ythx-101.github.io/lauren-tan-ai/): 方法论综合、79 条原帖索引、10 篇第三方解读，主入口；用 `#e1`…`#e79` 定位原帖，`#t1`…`#t10` 定位第三方解读
+- [长文](https://ythx-101.github.io/lauren-tan-ai/): 方法论综合、99 条原帖索引、13 篇第三方解读，主入口；用 `#e1`…`#e99` 定位原帖，`#t1`…`#t13` 定位第三方解读
 - [星云图](https://ythx-101.github.io/lauren-tan-ai/graph.html): 按时间排列的同心盘视图
 - [星系](https://ythx-101.github.io/lauren-tan-ai/galaxy.html): 每条原帖一颗星，按主题聚成星系
 
@@ -30,4 +30,4 @@
 
 ## English
 
-A curated Chinese-language guide to how Lauren Tan (@poteto) uses AI coding agents: trust ladder, verification skills, inner/outer loop (Cursor Projects and Grok Bot), and pstack. It indexes 79 of her posts and articles and 10 third-party write-ups. Numbers are self-reported and unverified.
+A curated Chinese-language guide to how Lauren Tan (@poteto) uses AI coding agents: trust ladder, verification skills, inner/outer loop (Cursor Projects and Grok Bot), and pstack. It indexes 99 of her posts, articles, talks and interviews and 13 third-party write-ups. Numbers are self-reported and unverified.

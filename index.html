@@ -2,16 +2,16 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>土豆 Lauren Tan 的 AI 用法全集</title>
-<meta name="description" content="Lauren Tan（@poteto）怎么用 AI 和编程 agent：信任阶梯、验证技能、内外环、pstack 等方法论综合，附 79 条原帖索引和 10 篇第三方解读。">
+<meta name="description" content="Lauren Tan（@poteto）怎么用 AI 和编程 agent：信任阶梯、验证技能、内外环、pstack 等方法论综合，附 99 条原帖索引和 13 篇第三方解读。">
 <link rel="canonical" href="https://ythx-101.github.io/lauren-tan-ai/">
 <meta property="og:title" content="土豆 Lauren Tan 的 AI 用法全集">
-<meta property="og:description" content="Lauren Tan（@poteto）怎么用 AI 和编程 agent：信任阶梯、验证技能、内外环、pstack 等方法论综合，附 79 条原帖索引和 10 篇第三方解读。">
+<meta property="og:description" content="Lauren Tan（@poteto）怎么用 AI 和编程 agent：信任阶梯、验证技能、内外环、pstack 等方法论综合，附 99 条原帖索引和 13 篇第三方解读。">
 <meta property="og:url" content="https://ythx-101.github.io/lauren-tan-ai/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"土豆 Lauren Tan 的 AI 用法全集","inLanguage":"zh-CN","author":{"@type":"Person","name":"青月"},"about":{"@type":"Person","name":"Lauren Tan","alternateName":"poteto"},"dateModified":"2026-10-16","mainEntityOfPage":"https://ythx-101.github.io/lauren-tan-ai/"}
+{"@context":"https://schema.org","@type":"Article","headline":"土豆 Lauren Tan 的 AI 用法全集","inLanguage":"zh-CN","author":{"@type":"Person","name":"青月"},"about":{"@type":"Person","name":"Lauren Tan","alternateName":"poteto"},"dateModified":"2026-11-19","mainEntityOfPage":"https://ythx-101.github.io/lauren-tan-ai/"}
 </script>
     
     <style>
@@ -747,8 +747,8 @@ h1, h2, .stat__fig, .ladder__num, [class*="__num"] { font-family: var(--display)
             <nav class="viewswitch" aria-label="视图"><a href="./index.html" aria-current="page">长文</a><a href="./graph.html">星云图</a><a href="./galaxy.html">星系</a><a href="https://github.com/ythx-101/lauren-tan-ai" target="_blank" rel="noopener" title="喜欢就点个 Star">⭐ Star</a></nav>
             <p class="hero__eyebrow">Lauren Tan · @poteto · SpaceXAI 首席工程师，负责 Grok Bot 和 Cursor</p>
             <h1>土豆 Lauren Tan 的 AI 用法全集</h1>
-            <p class="hero__sub">@poteto 怎么用 AI 和编程 agent：方法论综合 + 79 条本人内容 + 10 篇第三方解读</p>
-            <p class="hero__meta">整理：青月 · 2026-10-14</p>
+            <p class="hero__sub">@poteto 怎么用 AI 和编程 agent：方法论综合 + 99 条本人内容 + 13 篇第三方解读</p>
+            <p class="hero__meta">整理：青月 · 2026-10-14 · 更新 2026-11-19</p>
           </div>
           <aside class="callout" aria-label="怎么读">
             <p class="callout__head"><span class="hark-mark" data-size="16"></span> 怎么读</p>
@@ -761,8 +761,8 @@ h1, h2, .stat__fig, .ladder__num, [class*="__num"] { font-family: var(--display)
         </section>
 
         <section class="stats">
-          <div class="stat"><span class="stat__fig">79</span><span class="stat__label">条本人内容</span></div>
-          <div class="stat"><span class="stat__fig">10</span><span class="stat__label">篇第三方解读</span></div>
+          <div class="stat"><span class="stat__fig">99</span><span class="stat__label">条本人内容</span></div>
+          <div class="stat"><span class="stat__fig">13</span><span class="stat__label">篇第三方解读</span></div>
           <div class="stat"><span class="stat__fig">2,500</span><span class="stat__label">PRs/月（她自述）</span></div>
         </section>
 
@@ -1245,6 +1245,18 @@ h1, h2, .stat__fig, .ladder__num, [class*="__num"] { font-family: var(--display)
               <div class="timeline__what">pstack 瘦身 10%（&#34;less tokens&#34;）（<a class="link" href="#e76">#76</a>）</div>
             </li>
             <li>
+              <p class="timeline__when">11-03</p>
+              <div class="timeline__what">&#34;i now consider adversarial reviews mostly a waste of tokens. far better to use those tokens on empirical combined with formal verification&#34;（<a class="link" href="#e88">#88</a>）</div>
+            </li>
+            <li>
+              <p class="timeline__when">11-06</p>
+              <div class="timeline__what">&#34;the more deterministic the better (and token efficient)&#34;；确定性检查一次性花 token，之后由代码执行（<a class="link" href="#e91">#91</a>、<a class="link" href="#e93">#93</a>）</div>
+            </li>
+            <li>
+              <p class="timeline__when">11-11</p>
+              <div class="timeline__what">AIE 演讲：她现在大部分 token 花在验证上（运行时验证、TLA+、Lean、UI 属性测试）（<a class="link" href="#e95">#95</a>）</div>
+            </li>
+            <li>
               <p class="timeline__when">第三方</p>
               <div class="timeline__what">Rob Shocks 实测：用 pstack 约 1 小时，不用约 30 分钟，更费 token，但抓到 3 处 agent 幻觉（<a class="link" href="#t4">T4</a>）</div>
             </li>
@@ -1286,7 +1298,7 @@ h1, h2, .stat__fig, .ladder__num, [class*="__num"] { font-family: var(--display)
 
         <section class="section" id="index" data-nav="索引">
           <div class="head">
-            <p class="head__eyebrow">条目索引 · 共 79 条</p>
+            <p class="head__eyebrow">条目索引 · 共 99 条</p>
             <h2>按时间查原帖。</h2>
             <p class="head__sub">X 内容通过 nitter.cf 镜像读取（x.com 本身打不开），链接给的是 x.com 原帖。日期按 X/nitter 显示的 UTC 记，和北京时间可能差一天。</p>
           </div>
@@ -1709,7 +1721,7 @@ h1, h2, .stat__fig, .ladder__num, [class*="__num"] { font-family: var(--display)
             </li>
           </ol>
 
-          <h3 class="x-h3">2026 年 10 月 <small>15 条</small></h3>
+          <h3 class="x-h3">2026 年 10 月 <small>23 条</small></h3>
           <ol class="x-entries">
             <li class="x-entry" id="e64">
               <p class="x-entry__meta"><b>#64</b> · 10-02<span class="pill">访谈</span></p>
@@ -1807,12 +1819,136 @@ h1, h2, .stat__fig, .ladder__num, [class*="__num"] { font-family: var(--display)
               <p class="x-entry__gist">pstack 里最耐久的是工程原则：每条 10–20 行的极短技能，大多从她今年纠正 agent 的会话里提炼（如受 @VictorTaelin 启发的 Attack the Premise）；/poteto-mode 只放原则索引，并要求 agent “In your reply, name each principle that shaped a decision and the specific choice it changed”，所以回复末尾常有 Principles Named 一节；也可用 /principle-&lt;name&gt; 单独调用。她预计模型越强，pstack 越会压缩成短原则和通用流程。Uncle Bob 引用称其中“encoded very significant wisdom”。</p>
               <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2110496830429839869" rel="noopener" target="_blank">X 原帖</a><a class="link" href="https://github.com/cursor/plugins/blob/main/pstack/docs/guide/08-principles.md" rel="noopener" target="_blank">principles 文档</a></p>
             </li>
+            <li class="x-entry" id="e80">
+              <p class="x-entry__meta"><b>#80</b> · 10-16<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;how do you trust your agents&#39; work more?&#34; + inverse pyramid</h4>
+              <p class="x-entry__gist">把“倒金字塔”写成可直接丢给 agent 的清单：①代码库改进（&#34;make the easy thing the right thing&#34;，&#34;categorically eliminate problems through code&#34;）②静态分析（lint、测试、CI、TLA+，最省 token）③散文（注释、规则、AGENTS.md、技能，&#34;use it minimally&#34;）④人工评审（最难扩展）。附一段让 agent 读你的评审记录、用 /recall /correct /architect 找常见坑并重构的提示词。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2111133080526495985" rel="noopener" target="_blank">X 原帖</a></p>
+            </li>
+            <li class="x-entry" id="e81">
+              <p class="x-entry__meta"><b>#81</b> · 10-18～21<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;pstack v0.15.27 ships with a new skill /create-formal-verification-skill!&#34;</h4>
+              <p class="x-entry__gist">新的元技能：按你想验证的性质生成一个形式化验证技能（TLA+ 建模状态机和并发，或 Rust 里用 Kani 查未定义行为）。她认为形式化验证没普及是因为建模难、规格和代码难同步，而 agent 正好接手这部分苦活，&#34;gives your agents superpowers in writing correct software&#34;；她用它给自己团队的代码建 TLA+ 模型，已找到几个 bug。10-21 补充：先让 agent 画 statechart，再用生成的技能查 bug。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2111926622278521253" rel="noopener" target="_blank">X 原帖 1</a><a class="link" href="https://x.com/poteto/status/2112736749281759566" rel="noopener" target="_blank">X 原帖 2</a></p>
+            </li>
+            <li class="x-entry" id="e82">
+              <p class="x-entry__meta"><b>#82</b> · 10-24<span class="pill">推文（回复）</span></p>
+              <h4 class="x-entry__title">&#34;the more capable models get, the less instructions they need&#34;</h4>
+              <p class="x-entry__gist">她一直在更新并简化 pstack；预计技能会越来越短，&#34;until they&#39;re basically just saved prompts&#34;。和 #79 的“会压缩成短原则”一脉相承。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2114099131845423142" rel="noopener" target="_blank">X 原帖</a></p>
+            </li>
+            <li class="x-entry" id="e83">
+              <p class="x-entry__meta"><b>#83</b> · 10-26<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;so many gems and great tips in this talk from @yminsky about how to improve your codebase for agents&#34;</h4>
+              <p class="x-entry__gist">她转述 Jane Street Ron Minsky 的演讲：agent 靠反馈成长，类型是最好的反馈之一；&#34;make illegal states unrepresentable&#34;；属性测试、fuzz、确定性仿真；expect tests 让行为可读、缩小评审面；形式化方法过去极贵（seL4 约 25 人年），&#34;but agents change the roi&#34;。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2114626630429913383" rel="noopener" target="_blank">X 原帖</a></p>
+            </li>
+            <li class="x-entry" id="e84">
+              <p class="x-entry__meta"><b>#84</b> · 10-29<span class="pill">推文（回复）</span></p>
+              <h4 class="x-entry__title">&#34;this is why we just banned comments in our codebase&#34;</h4>
+              <p class="x-entry__gist">&#34;agents love justifying their lazy hacks with comments, and before you know it the hack spreads everywhere&#34;。例外只有两类：指向上游 issue / RFC 的链接，以及法律和许可证声明。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2115644484226777581" rel="noopener" target="_blank">X 原帖 1</a><a class="link" href="https://x.com/poteto/status/2115664844863201667" rel="noopener" target="_blank">X 原帖 2</a></p>
+            </li>
+            <li class="x-entry" id="e85">
+              <p class="x-entry__meta"><b>#85</b> · 10-29<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;the /statechart skill in pstack v0.15.36 is now stable and ready for use!&#34;</h4>
+              <p class="x-entry__gist">/statechart 稳定版：内置一个迷你 TLC 编译器（解析→小 IR→输出 Mermaid），配合 /create-formal-verification-skill 给状态机和分布式系统建模找 bug；也可以用 Pele 按任何风格画图。附图里是她刚找到的 2 个真实 bug。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2115880102601101414" rel="noopener" target="_blank">X 原帖</a></p>
+            </li>
+            <li class="x-entry" id="e86">
+              <p class="x-entry__meta"><b>#86</b> · 10-30<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;code used to arrive one drop at a time… like a violent river&#34;</h4>
+              <p class="x-entry__gist">AI 给每个工程师一支“弹性劳动力”，代码像湍急的河一样涌来；唯一的适应办法是改造系统，让缺乏上下文的 agent 也能做对：&#34;make the easy thing the right thing&#34;，&#34;your codebase is becoming organic architecture&#34;，&#34;design systems, frameworks, and languages to control the chaos&#34;，&#34;the time for mourning coding is long over&#34;。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2116191971714953262" rel="noopener" target="_blank">X 原帖</a></p>
+            </li>
+            <li class="x-entry" id="e87">
+              <p class="x-entry__meta"><b>#87</b> · 10-31<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;here&#39;s a short grok bot guide on how i create high quality bots and manage my team&#34;</h4>
+              <p class="x-entry__gist">用 Dr Eggbot 造 bot；&#34;you don&#39;t need a lot of bots. a few good bots&#34;；边教边让 bot 给自己写技能；接好连接器和工具；把你手动复制粘贴的环节交给 bot；像带实习生一样 onboarding；最爱的技巧是语音倾倒信息，最后让它 &#34;restate this in your own words&#34;。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2116576229319233596" rel="noopener" target="_blank">X 原帖</a></p>
+            </li>
+          </ol>
+
+          <h3 class="x-h3">2026 年 11 月 <small>12 条</small></h3>
+          <ol class="x-entries">
+            <li class="x-entry" id="e88">
+              <p class="x-entry__meta"><b>#88</b> · 11-03<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;i now consider adversarial reviews mostly a waste of tokens&#34;</h4>
+              <p class="x-entry__gist">&#34;far better to use those tokens on empirical combined with formal verification&#34;。她已让 pstack 少用 /interrogate，以后可能删掉；抽象的代码评审里 agent 只会纠缠 nitpick 和 YAGNI。回复里补充：多轮 agent 评审会把 PR “overcook”——评审者不知道你的目标，作者 agent 又太谄媚、照单全收。这是对她早期“多模型对抗评审”做法的明确转向。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2117437607940681849" rel="noopener" target="_blank">X 原帖</a></p>
+            </li>
+            <li class="x-entry" id="e89">
+              <p class="x-entry__meta"><b>#89</b> · 11-04<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;how we ship crazy amounts of code (30x&#39;d) without reading it&#34;</h4>
+              <p class="x-entry__gist">AIE 演讲预告幻灯片：触及 Grok Bot 团队代码的合并 PR 从 6 月 809 涨到 10 月 10,926；冷启动、重启、长对话打字延迟都比 5 月更快；10 月约 230 人至少合过 1 个 PR。她归功于 &#34;agent friendly architecture bets&#34;（数字为团队自述）。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2118017093677494706" rel="noopener" target="_blank">X 原帖</a></p>
+            </li>
+            <li class="x-entry" id="e90">
+              <p class="x-entry__meta"><b>#90</b> · 11-05<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;while i&#39;m quite bullish on formal methods, i think it&#39;s worth tempering expectations&#34;</h4>
+              <p class="x-entry__gist">形式化验证只能证明“代码符合规格”，而规格来自人想要什么，&#34;nothing can prove that your spec is right, only you can judge&#34;。她做 /statechart 主要是让隐含的状态机变得可读、缩小评审面、在更高层核对意图；模型检查要配合实际运行代码确认。近中期仍要分层：约束和护栏、经验验证、需要的地方再上形式化验证。她的游戏 tibo.dog 里每个子系统都有自己的形式化验证技能。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2118416074601545968" rel="noopener" target="_blank">X 原帖 1</a><a class="link" href="https://x.com/poteto/status/2118419507685544058" rel="noopener" target="_blank">X 原帖 2</a></p>
+            </li>
+            <li class="x-entry" id="e91">
+              <p class="x-entry__meta"><b>#91</b> · 11-06～07<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;hot take: you don&#39;t need a software factory, and i don&#39;t love the term. it&#39;s just marketing&#34;</h4>
+              <p class="x-entry__gist">&#34;all you need is good software engineering and investing your tokens in the right places. the more deterministic the better&#34;。次日补充：Grok Bot 团队上月合并 11k PR、每天至少发一个稳定版，但 &#34;it&#39;s not a dark factory&#34;；倒金字塔就是把东西推向确定性，&#34;much more affordable and reproducible than spinning up agent swarms for everything&#34;。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2118613050462728659" rel="noopener" target="_blank">X 原帖 1</a><a class="link" href="https://x.com/poteto/status/2118904450106654888" rel="noopener" target="_blank">X 原帖 2</a></p>
+            </li>
+            <li class="x-entry" id="e92">
+              <p class="x-entry__meta"><b>#92</b> · 11-08<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;knowing the right words is very powerful&#34;</h4>
+              <p class="x-entry__gist">她零音乐基础，用 Grok Bot 给游戏做音乐和视频：告诉 bot &#34;i lack the vocabulary to describe what i want&#34;，配合 /sharpen，再用 /in-your-own-words 确认它听懂了；做视频时同样让 agent 先出分镜和 animatic。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2119313621188849806" rel="noopener" target="_blank">X 原帖</a></p>
+            </li>
+            <li class="x-entry" id="e93">
+              <p class="x-entry__meta"><b>#93</b> · 11-08～09<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;use /create-formal-verification-skill to model these state machines, one skill per subsystem&#34;</h4>
+              <p class="x-entry__gist">接 Steve Ruiz 的“找出应用里所有隐含状态机”，她给下一步提示词：每个子系统一个形式化验证技能，再用 /statechart 画最重要的用户流程。解释：生成的技能（如 /verify-notifications）含一份规格并做模型检查；statechart 让你从用户视角确认流程对不对，&#34;since only you know what your product is supposed to do&#34;；这些确定性检查长期更省 token。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2119521036660314339" rel="noopener" target="_blank">X 原帖 1</a><a class="link" href="https://x.com/poteto/status/2119606119559782488" rel="noopener" target="_blank">X 原帖 2</a></p>
+            </li>
+            <li class="x-entry" id="e94">
+              <p class="x-entry__meta"><b>#94</b> · 11-09<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;a golden age of software testing and verification&#34;</h4>
+              <p class="x-entry__gist">&#34;we are entering a renaissance in programming language and runtime research, and a golden age of software testing and verification. it&#39;s time to rewrite all software&#34;。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2119824409087348984" rel="noopener" target="_blank">X 原帖</a></p>
+            </li>
+            <li class="x-entry" id="e95">
+              <p class="x-entry__meta"><b>#95</b> · 11-11<span class="pill">演讲</span></p>
+              <h4 class="x-entry__title">AI Engineer Code Summit《All Code Is Slop (Except Mine)》</h4>
+              <p class="x-entry__gist">约 18 分钟主会场演讲（11-14 上线）。Grok Bot 团队上月约 11,000 个 PR、回滚率约 0.5%（自述）。核心：每次纠正 agent，都把纠正变成代码设计、lint 或测试，而不是 AGENTS.md 里再加一行；Dune 禁 useEffect、禁 main/renderer 互相 import、禁约 99% 的注释；评审变成看验证产物（视频、截图、图、形式化验证）；她大部分 token 花在验证上（运行时验证、TLA+、Lean、Bombadil UI 属性测试）；先修好内环，再自动化外环。</p>
+              <p class="x-entry__links"><a class="link" href="https://www.youtube.com/watch?v=O_zcc6Xl12g" rel="noopener" target="_blank">YouTube</a><a class="link" href="https://x.com/poteto/status/2121673563489140863" rel="noopener" target="_blank">X 原帖</a></p>
+            </li>
+            <li class="x-entry" id="e96">
+              <p class="x-entry__meta"><b>#96</b> · 11-14<span class="pill">访谈</span></p>
+              <h4 class="x-entry__title">YC Lightcone《The Rise Of AI Coworkers》（与 Roman Ugarte）</h4>
+              <p class="x-entry__gist">她说自己 &#34;the explorer&#34;：探索半年到一年后的软件工程。不用 plan mode；对 /interrogate 式对抗评审 &#34;withdrawn a little bit&#34;，因为有过拟合风险、评审 agent 不懂产品意图；最小的 loop 是让 agent 能像用户一样运行代码检查自己；她的工厂只做维护（性能、bug、体验），不拿来做新功能，&#34;as long as we&#39;re building software for humans&#34; 需要人的判断和品味；在 Slack 线程里和同事 + bot 一起做完整个功能、不看 Cursor。</p>
+              <p class="x-entry__links"><a class="link" href="https://www.ycombinator.com/library/n0-the-rise-of-ai-coworkers" rel="noopener" target="_blank">YC 文字稿</a><a class="link" href="https://www.youtube.com/watch?v=y1-9yeYLJUo" rel="noopener" target="_blank">YouTube</a></p>
+            </li>
+            <li class="x-entry" id="e97">
+              <p class="x-entry__meta"><b>#97</b> · 11-14<span class="pill">推文</span></p>
+              <h4 class="x-entry__title">&#34;quick fixes considered harmful&#34;</h4>
+              <p class="x-entry__gist">让 agent 做“最小、最快的改动”可能反而让代码更差：一个看似无害的创可贴会被下一个 agent 复制，很快到处都是。以前手写创可贴是因为没时间，&#34;agents change this calculus. sometimes you want it to fix the root cause instead even if it&#39;s more invasive&#34;。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/status/2121646643124809848" rel="noopener" target="_blank">X 原帖</a></p>
+            </li>
+            <li class="x-entry" id="e98">
+              <p class="x-entry__meta"><b>#98</b> · 11-16<span class="pill">pstack 更新</span></p>
+              <h4 class="x-entry__title">pstack 0.15.43：&#34;shorter skill texts, worker.md, and Opus-first routing capped at xhigh&#34;</h4>
+              <p class="x-entry__gist">她本人的 PR #1249：14 条原则、unslop、多个 playbook 大幅缩短；/reflect 改成单文件、不再派子 agent；/architect 只剩短 brief，大设计交给 arena；删除 Orchestrate playbook；新增 worker.md，所有被派出的 agent 先读它（不问人问题、PR 直接 ready）；默认模型改为 Opus 5.5 xhigh，任何角色不超过 xhigh，Fable 5.2 只在点名或 Opus 失败两次后才用。</p>
+              <p class="x-entry__links"><a class="link" href="https://github.com/cursor/plugins/pull/1249" rel="noopener" target="_blank">GitHub PR</a></p>
+            </li>
+            <li class="x-entry" id="e99">
+              <p class="x-entry__meta"><b>#99</b> · 11-18<span class="pill">长文</span></p>
+              <h4 class="x-entry__title">&#34;Automate Anything with Grok Bot&#34;</h4>
+              <p class="x-entry__gist">写给非工程师的自动化方法：自动化 = 目标 + 流程，先想清目标、别把流程当目标；用语音把步骤、注意事项、工具、怎么检查、信息和反馈从哪来都倒给 bot，让它先复述再执行；教它你“不假思索”的判断；给它拿到反馈数据的途径让它自我改进（统一的 ID 让数据能交叉对照）；最后用 routines 让它自动触发。同时发布 Dr Eggbot v2。</p>
+              <p class="x-entry__links"><a class="link" href="https://x.com/poteto/article/2123159537016533493" rel="noopener" target="_blank">X 长文</a><a class="link" href="https://x.com/poteto/status/2123159537016533493" rel="noopener" target="_blank">X 原帖</a></p>
+            </li>
           </ol>
         </section>
 
         <section class="section" id="third" data-nav="解读">
           <div class="head">
-            <p class="head__eyebrow">第三方解读 · 10 条</p>
+            <p class="head__eyebrow">第三方解读 · 13 条</p>
             <h2>别人怎么读她，按发布时间排。</h2>
             <p class="head__sub">最全的是 T7，最严谨的是 T8。标“仅看过搜索摘要”的未读全文。</p>
           </div>
@@ -1877,11 +2013,29 @@ h1, h2, .stat__fig, .ladder__num, [class*="__num"] { font-family: var(--display)
               <p class="x-entry__gist">pstack 移植到 Claude Code、Codex、Pi 等平台（仅看过搜索摘要）。</p>
               <p class="x-entry__links"><a class="link" href="https://github.com/michael-denyer/pstack-claude" rel="noopener" target="_blank">michael-denyer/pstack-claude</a></p>
             </li>
+            <li class="x-entry" id="t11">
+              <p class="x-entry__meta"><b>T11</b> · 2026-11-16<span class="pill">第三方解读</span></p>
+              <h4 class="x-entry__title">Sulat（JP Caparas）《Grok Bot team shipped 11,000 pull requests in a month》</h4>
+              <p class="x-entry__gist">AIE 演讲的细致整理：倒金字塔、Dune 的三条禁令、看证据代替看 diff、TLA+/Lean/Bombadil；明确数字是团队自述、演讲没定义回滚口径。</p>
+              <p class="x-entry__links"><a class="link" href="https://news.sulat.com/2026/11/16/lauren-tan-ai-engineer-talk" rel="noopener" target="_blank">news.sulat.com</a></p>
+            </li>
+            <li class="x-entry" id="t12">
+              <p class="x-entry__meta"><b>T12</b> · 2026-11-15<span class="pill">第三方解读</span></p>
+              <h4 class="x-entry__title">XiaoHu.AI《11,000 PRs a Month, About 0.5% Reverted》</h4>
+              <p class="x-entry__gist">AIE 演讲长篇解读，含“演讲没讲到的部分”一节（仅看过搜索摘要）。</p>
+              <p class="x-entry__links"><a class="link" href="https://xiaohu.ai/en/article/lauren-tan-agent-code-quality" rel="noopener" target="_blank">xiaohu.ai</a></p>
+            </li>
+            <li class="x-entry" id="t13">
+              <p class="x-entry__meta"><b>T13</b> · 2026-10-24<span class="pill">第三方解读</span></p>
+              <h4 class="x-entry__title">modernEngineer《Inside pstack》</h4>
+              <p class="x-entry__gist">pstack 源码级拆解，考证了 /create-formal-verification-skill 实际首发于 0.15.26（仅看过搜索摘要）。</p>
+              <p class="x-entry__links"><a class="link" href="https://modernengineer.dev/en/library/pstack-teardown" rel="noopener" target="_blank">modernengineer.dev</a></p>
+            </li>
           </ol>
         </section>
       </main>
       <footer class="foot">
-        <p>内容中的 PR 数、token 数均为她本人自述，未独立核实。整理：青月（X @YuLin807）· 2026-10-14。</p>
+        <p>内容中的 PR 数、token 数均为她本人自述，未独立核实。整理：青月（X @YuLin807）· 2026-10-14，2026-11-19 更新。</p>
         <nav aria-label="回到各部分" data-auto=""></nav>
         <a class="badge" href="https://hark.com/" rel="noopener" target="_blank"><span class="hark-mark"></span><span>built by hark</span></a>
       </footer>

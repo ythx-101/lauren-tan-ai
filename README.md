@@ -1,6 +1,6 @@
 # 土豆 Lauren Tan 的 AI 用法全集
 
-**土豆 Lauren Tan（@poteto）的 AI 用法全集：给想把编程 agent 用好的开发者和 AI 从业者，把她散落在 X、GitHub、演讲里的方法论整理成一页可查的中文长文，含 79 条原帖索引和 10 篇第三方解读。**
+**土豆 Lauren Tan（@poteto）的 AI 用法全集：给想把编程 agent 用好的开发者和 AI 从业者，把她散落在 X、GitHub、演讲里的方法论整理成一页可查的中文长文，含 99 条原帖索引和 13 篇第三方解读。**
 
 在线阅读：<https://ythx-101.github.io/lauren-tan-ai/>
 
@@ -8,8 +8,8 @@
 
 | 视图 | 文件 | 说明 |
 |---|---|---|
-| 长文 | [`index.html`](https://ythx-101.github.io/lauren-tan-ai/) | 方法论综合 + 79 条原帖索引 + 10 篇第三方解读，主阅读入口 |
-| 星云图 | [`graph.html`](https://ythx-101.github.io/lauren-tan-ai/graph.html) | 79 条原帖按时间排列的同心盘 |
+| 长文 | [`index.html`](https://ythx-101.github.io/lauren-tan-ai/) | 方法论综合 + 99 条原帖索引 + 13 篇第三方解读，主阅读入口 |
+| 星云图 | [`graph.html`](https://ythx-101.github.io/lauren-tan-ai/graph.html) | 99 条原帖按时间排列的同心盘 |
 | 星系 | [`galaxy.html`](https://ythx-101.github.io/lauren-tan-ai/galaxy.html) | 把每条内容画成一颗星，按主题聚成星系 |
 
 ## 内容目录
@@ -26,8 +26,8 @@
 8. 内环 / 外环：Grok Bot 是外环，Cursor Projects 是内环
 9. token 花在环境上：前期投入环境，长期反而省
 10. 辟谣「她没说过的话」：流传最广的几句话，她本人没说过
-11. 按时间查原帖：79 条条目索引
-12. 第三方解读：10 篇，按发布时间排
+11. 按时间查原帖：99 条条目索引
+12. 第三方解读：13 篇，按发布时间排
 
 ## 本地打开（快速开始）
 
@@ -80,7 +80,7 @@ python3 scripts/check_links.py
 
 ## English summary
 
-A curated Chinese-language guide to how **Lauren Tan (@poteto)** uses AI coding agents and an agentic workflow, with Cursor and Grok Bot. It synthesizes her methodology — the trust ladder, verification skills (a CLI plus a feature map), the inner/outer loop (Cursor Projects and Grok Bot), and **pstack**, her set of skills and engineering principles — and indexes 79 of her posts and articles plus 10 third-party write-ups. Quotes stay in English; the Chinese text is the curator's summary. Numbers such as PR counts are self-reported and unverified.
+A curated Chinese-language guide to how **Lauren Tan (@poteto)** uses AI coding agents and an agentic workflow, with Cursor and Grok Bot. It synthesizes her methodology — the trust ladder, verification skills (a CLI plus a feature map), the inner/outer loop (Cursor Projects and Grok Bot), and **pstack**, her set of skills and engineering principles — and indexes 99 of her posts, articles, talks and interviews plus 13 third-party write-ups. Quotes stay in English; the Chinese text is the curator's summary. Numbers such as PR counts are self-reported and unverified.
 
 ## 来源与声明
 
