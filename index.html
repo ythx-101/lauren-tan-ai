@@ -2,17 +2,22 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>土豆 Lauren Tan 的 AI 用法全集</title>
-<meta name="description" content="Lauren Tan（@poteto）怎么用 AI 和编程 agent：信任阶梯、验证技能、内外环、pstack 等方法论综合，附 99 条原帖索引和 13 篇第三方解读。">
+<meta name="description" content="Lauren Tan（@poteto）怎么用 AI 和编程 agent：信任阶梯、验证技能、内外环、pstack 等方法论综合，以及 2026 年 11 月从对抗评审转向确定性检查和形式化验证（TLA+、Lean、/statechart），附 99 条原帖索引和 13 篇第三方解读。">
 <link rel="canonical" href="https://ythx-101.github.io/lauren-tan-ai/">
 <meta property="og:title" content="土豆 Lauren Tan 的 AI 用法全集">
-<meta property="og:description" content="Lauren Tan（@poteto）怎么用 AI 和编程 agent：信任阶梯、验证技能、内外环、pstack 等方法论综合，附 99 条原帖索引和 13 篇第三方解读。">
+<meta property="og:description" content="Lauren Tan（@poteto）怎么用 AI 和编程 agent：信任阶梯、验证技能、内外环、pstack 等方法论综合，以及 2026 年 11 月从对抗评审转向确定性检查和形式化验证（TLA+、Lean、/statechart），附 99 条原帖索引和 13 篇第三方解读。">
 <meta property="og:url" content="https://ythx-101.github.io/lauren-tan-ai/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary">
+<meta property="og:site_name" content="土豆 Lauren Tan 的 AI 用法全集">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"土豆 Lauren Tan 的 AI 用法全集","inLanguage":"zh-CN","author":{"@type":"Person","name":"青月"},"about":{"@type":"Person","name":"Lauren Tan","alternateName":"poteto"},"dateModified":"2026-11-19","mainEntityOfPage":"https://ythx-101.github.io/lauren-tan-ai/"}
+{"@context": "https://schema.org", "@type": "Article", "headline": "土豆 Lauren Tan 的 AI 用法全集", "description": "Lauren Tan（@poteto）怎么用 AI 和编程 agent：信任阶梯、验证技能、内外环、pstack 等方法论综合，以及 2026 年 11 月从对抗评审转向确定性检查和形式化验证（TLA+、Lean、/statechart），附 99 条原帖索引和 13 篇第三方解读。", "inLanguage": "zh-CN", "author": {"@type": "Person", "name": "青月", "url": "https://x.com/YuLin807"}, "about": {"@type": "Person", "name": "Lauren Tan", "alternateName": ["poteto", "土豆"], "sameAs": ["https://x.com/poteto", "https://github.com/poteto"]}, "keywords": ["Lauren Tan", "poteto", "土豆", "pstack", "/poteto-mode", "Grok Bot", "Cursor", "AI coding agents", "编程 agent", "信任阶梯", "trust ladder", "验证技能", "verification skill", "内外环", "inner loop", "outer loop", "形式化验证", "formal verification", "TLA+", "Lean", "Kani", "/statechart", "对抗评审", "adversarial review", "All Code Is Slop (Except Mine)"], "datePublished": "2026-10-14T03:50:49+08:00", "dateModified": "2026-11-19", "mainEntityOfPage": "https://ythx-101.github.io/lauren-tan-ai/", "url": "https://ythx-101.github.io/lauren-tan-ai/"}
 </script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "zh-CN", "mainEntity": [{"@type": "Question", "name": "Lauren Tan（@poteto）是谁？", "acceptedAnswer": {"@type": "Answer", "text": "Lauren Tan 在 X 上叫 @poteto（本站称她“土豆”），是 SpaceXAI 首席工程师，负责 Grok Bot 和 Cursor。她在 Netflix 当过约两年工程经理，在 Meta 当过 React 的工程经理，后来回到一线工程师；2026 年 3 月底加入 Cursor，2026-05-25 开源 pstack。"}}, {"@type": "Question", "name": "pstack 是什么？", "acceptedAnswer": {"@type": "Answer", "text": "pstack 是 Lauren Tan 的个人技能集和工程原则（cursor/plugins 仓库里的 pstack），她把观察到的 agent 失败模式全部变成技能。任务开头加 /poteto-mode 这个路由器即可调用，里面有 playbook、技能和原则技能；目标不是写最多的代码，而是“用最少的代码产生最大的影响”。2026 年 11 月的 0.15.43 版大幅缩短了技能文本，默认模型改为 Opus 5.5 xhigh。"}}, {"@type": "Question", "name": "Lauren Tan 说的信任阶梯是什么？", "acceptedAnswer": {"@type": "Answer", "text": "她的核心观点是：吞吐量来自信任，信任来自验证和环境，而不是来自开更多 agent。信任阶梯分五级：微操一个 agent；当 agent 和 Chrome DevTools 之间的“meat proxy”；用验证技能给 agent 一双“手和眼睛”；准备好环境（工具、类型、lint）；最后让 agent 自己合并 PR，她早上看提交历史。她强调别跳级，“There's really no shortcut”。"}}, {"@type": "Question", "name": "她为什么转向少用多 agent 对抗评审？", "acceptedAnswer": {"@type": "Answer", "text": "2026-11-03 她说 “i now consider adversarial reviews mostly a waste of tokens”，更好的做法是把 token 花在经验验证加形式化验证上。理由是：抽象的代码评审里 agent 只会纠缠 nitpick 和 YAGNI；多轮 agent 评审会把 PR “overcook”，评审者不知道你的目标，作者 agent 又太谄媚、照单全收。她已让 pstack 少用 /interrogate，这是对她早期多模型对抗评审做法的明确转向。"}}, {"@type": "Question", "name": "Lauren Tan 怎么用形式化验证？", "acceptedAnswer": {"@type": "Answer", "text": "pstack 的 /create-formal-verification-skill 会按你想验证的性质生成一个形式化验证技能，比如用 TLA+ 建模状态机和并发，或在 Rust 里用 Kani 查未定义行为；/statechart 把隐含的状态机画出来，缩小评审面。她建议每个子系统一个形式化验证技能，再用 /statechart 画最重要的用户流程。她也提醒：形式化验证只能证明代码符合规格，规格对不对只有人能判断，所以要分层，先有约束和护栏、经验验证，需要的地方再上形式化验证。在 AIE 演讲《All Code Is Slop (Except Mine)》里她说，现在大部分 token 花在验证上（运行时验证、TLA+、Lean、UI 属性测试）。"}}, {"@type": "Question", "name": "她说的内环和外环是什么？", "acceptedAnswer": {"@type": "Answer", "text": "“cursor projects are my inner loop and grok bot is my outer loop”。外环 Grok Bot 盯 Slack、X、邮件、Linear，发现相关问题就发给对应的 Cursor Project；内环 Cursor Projects 里的协调者 agent 不自己干活，只负责委派和编排，比如把 30 个相关报告合在一起找共同根因，而不是开 30 个互不相干的修复。她在 AIE 演讲里的建议是先修好内环，再自动化外环。"}}]}
+</script>
+<meta name="author" content="青月">
     
     <style>
 @font-face { font-family: "Smiley Sans"; src: url("fonts/smiley-sans-subset.woff2") format("woff2"); font-display: swap; }

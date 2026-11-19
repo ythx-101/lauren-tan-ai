@@ -1,5 +1,7 @@
 # 土豆 Lauren Tan 的 AI 用法全集
 
+> A Chinese-language field guide to how Lauren Tan (@poteto), principal engineer at SpaceXAI working on Grok Bot and Cursor and author of pstack, works with AI coding agents: the trust ladder, verification skills, the inner/outer loop, and her November 2026 shift from multi-agent adversarial review to deterministic checks and formal verification (TLA+, Kani, Lean, /statechart). It indexes 99 of her posts, talks and interviews plus 13 third-party write-ups, with English quotes kept verbatim. Read it at https://ythx-101.github.io/lauren-tan-ai/ (plain-text version: [llms-full.txt](https://ythx-101.github.io/lauren-tan-ai/llms-full.txt)).
+
 **土豆 Lauren Tan（@poteto）的 AI 用法全集：给想把编程 agent 用好的开发者和 AI 从业者，把她散落在 X、GitHub、演讲里的方法论整理成一页可查的中文长文，含 99 条原帖索引和 13 篇第三方解读。**
 
 在线阅读：<https://ythx-101.github.io/lauren-tan-ai/>

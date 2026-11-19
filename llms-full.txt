@@ -1,0 +1,1417 @@
+# 土豆 Lauren Tan 的 AI 用法全集（全文）
+
+> 本文件是 https://ythx-101.github.io/lauren-tan-ai/ 页面正文的纯文本 Markdown 版，供 AI 引擎和检索工具读取。内容与网页一致；文中 #编号（如 #88）对应网页上的原帖锚点 https://ythx-101.github.io/lauren-tan-ai/#e88，T 编号对应第三方解读 https://ythx-101.github.io/lauren-tan-ai/#t1。整理：青月（X @YuLin807）。更新：2026-11-19。
+> 引文保留英文原文，中文为整理者概括，版权归原作者。PR 数、token 数等数字均为 Lauren Tan 本人自述，未独立核实。
+
+---
+
+Lauren Tan · @poteto · SpaceXAI 首席工程师，负责 Grok Bot 和 Cursor
+
+# 土豆 Lauren Tan 的 AI 用法全集
+
+@poteto 怎么用 AI 和编程 agent：方法论综合 + 99 条本人内容 + 13 篇第三方解读
+
+整理：青月 · 2026-10-14 · 更新 2026-11-19
+
+怎么读
+
+**先读方法论，**再按时间线查原帖。
+
+[方法论](https://ythx-101.github.io/lauren-tan-ai/#core) [条目索引](https://ythx-101.github.io/lauren-tan-ai/#index)
+
+99条本人内容
+
+13篇第三方解读
+
+2,500PRs/月（她自述）
+
+一句话核心
+
+## 产量来自信任，不来自多开 agent。
+
+吞吐量来自信任，信任来自验证和环境，而不是来自开更多 agent。
+
+> "Trying to parallelize agents you don't trust yet is a huge waste of tokens and introduces more slop into your codebase." How I Use Cursor（[\#13](https://ythx-101.github.io/lauren-tan-ai/#e13)）
+
+范围：她本人的 X 推文和长文（X Articles）、GitHub（poteto/noodle、cursor/plugins 里的 pstack）、演讲、工作坊、访谈，以及质量较好的第三方解读。引文保留英文原文，中文为整理者概括。文中的 \#编号对应下方条目索引。
+
+01 · 工具栈演变
+
+## 从终端里编排 CLI agent，到在 GUI 和云端搭一个能自己跑的厨房。
+
+Meta 时期的 Claude Code → Cursor → Grok Bot
+
+1.  2025-04
+
+    **React Compiler MCP 实验。**想让 agent 拿到人用的信号（编译器诊断、lint）；后来认为 MCP 这个载体选错了。（[\#20](https://ythx-101.github.io/lauren-tan-ai/#e20)）
+
+2.  2025 年末～2026-03
+
+    **Meta + Claude Code。**"At Meta, Claude Code was explosively taking off. I even paid for a personal \$200 a month plan for my side projects."
+
+    自己写技能把 cc 改造成想要的样子，还在上面做编排器（noodle）。分工上 Claude 当 manager、Codex 当 coder，Codex 做对抗评审（[\#4](https://ythx-101.github.io/lauren-tan-ai/#e4)、[\#6](https://ythx-101.github.io/lauren-tan-ai/#e6)）。用 deepcoding 插件先装好上下文再写代码（[\#2](https://ythx-101.github.io/lauren-tan-ai/#e2)）。出处 [\#13](https://ythx-101.github.io/lauren-tan-ai/#e13)、[\#8](https://ythx-101.github.io/lauren-tan-ai/#e8)。
+
+3.  2026 年 1～2 月
+
+    **倦怠期的副业。**离开 Meta 前后休了一个月，开始做副业，发现自己“花好几个小时微操一个 agent”，技能效果也没法衡量（"flying blind"）。这段经历成了 pstack 的雏形。（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）
+
+4.  2026-03 底
+
+    **加入 Cursor。**面试那两天第一次用 Cursor。三点印象：随时切换、混用模型（Opus 写前端、Codex 写系统）；压缩上下文极快；GUI 比 TUI 能做更多。
+
+    入职第二天就被拉去修 Agents Window（内部代号 glass）的性能 → 写出 /control-glass → 加 worktree 隔离 → Cursor Automations（Benny）→ 2026-05-25 开源 pstack。（[\#13](https://ythx-101.github.io/lauren-tan-ai/#e13)、[\#20](https://ythx-101.github.io/lauren-tan-ai/#e20)）
+
+5.  2026-07～08
+
+    **云端 agent 时代。**"worktrees are dead. cloud agents are the future."（[\#32](https://ythx-101.github.io/lauren-tan-ai/#e32)）
+
+    模型从 Opus/Codex 转向 Grok 4.5 fast（[\#24](https://ythx-101.github.io/lauren-tan-ai/#e24)）、Grok 4.6（[\#32](https://ythx-101.github.io/lauren-tan-ai/#e32)），后来是 Grok 4.7 xhigh（[\#69](https://ythx-101.github.io/lauren-tan-ai/#e69)）。pstack README 默认配置：写代码交给 grok，最难的改动、文字和判断交给 Opus 5.5。
+
+6.  2026-07 起，08-11 发布
+
+    **Grok Bot（SpaceXAI）。**约 7 月开始做 Grok Bot（Pt.1 里说 "about 2 months ago"），重构成 Dune 框架。Grok Bot 当**外环**（Slack、X、邮件、Linear 等连接器加 routines），Cursor Projects 和云端 agent 当**内环**。
+
+    2026-10-12 推出 Grok、Grok Bot、Cursor、X Premium 合一的订阅。（[\#26](https://ythx-101.github.io/lauren-tan-ai/#e26)、[\#52](https://ythx-101.github.io/lauren-tan-ai/#e52)、[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)、nitter 时间线）
+
+她对 CLI 编排器的批评：
+
+> "Folks converging on orchestration tools exposes the latent demand in that using a cli just makes you, the human, the orchestrator." [\#13](https://ythx-101.github.io/lauren-tan-ai/#e13)
+
+02 · 信任阶梯（Trust Ladder / Trust Curve）
+
+## 一级一级往上爬，没有捷径。
+
+她自己走过的阶梯，Barnaby 根据访谈整理（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)、[T7](https://ythx-101.github.io/lauren-tan-ai/#t7)）
+
+01
+
+起点
+
+### 微操一个 agent
+
+- 同时盯 **1～5** 个对话
+
+"you still feel like you have to baby sit every chat"。她认为这是最难走出来的一步（[\#59](https://ythx-101.github.io/lauren-tan-ai/#e59)）。
+
+02
+
+人肉中转
+
+### 当 “meat proxy”
+
+"I was the meat proxy between my agent and Chrome DevTools"
+
+03
+
+手和眼睛
+
+### 验证技能给 agent 一双“手和眼睛”
+
+agent 自己运行、操作产品，看到结果。
+
+04
+
+环境
+
+### 准备好环境
+
+工具、类型、lint。
+
+05
+
+放手
+
+### agent 自己合并 PR，她早上看提交历史
+
+"I'm sleeping so much better now"；第一晚 "very scary"。
+
+**别跳级。**
+
+> "if you don't have trust and you try to spawn 100 sub agents or cloud agents you're going to quickly find that you're just going to get a ton of slop pull requests" [\#59](https://ythx-101.github.io/lauren-tan-ai/#e59)
+
+> "There's really no shortcut" [\#30](https://ythx-101.github.io/lauren-tan-ai/#e30)
+
+**爬到顶的前提：**"Make loops autonomous only after it earns your trust."（[\#20](https://ythx-101.github.io/lauren-tan-ai/#e20)）
+
+**边界：**要看领域能不能被验证。"verifiability of the domain is an important aspect… I don't really have the answer"（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）
+
+03 · 验证
+
+## 验证技能是关键基础设施：一个 CLI，加一张 Feature Map。
+
+> "the most critical skill to have in your toolbox is a high quality verification skill… I think of it more like critical infrastructure" [\#52](https://ythx-101.github.io/lauren-tan-ai/#e52)
+
+"Done well, you will 100-1000x your whole team's output"；她甚至建议给它排 oncall（[\#52](https://ythx-101.github.io/lauren-tan-ai/#e52)）。
+
+**定义：**agent 能像真实用户一样运行和操作产品，还能 debug、抓 trace、抓 heap snapshot，从而 "close the loop"。它保证的是**正确**，不保证代码**好**（[\#30](https://ythx-101.github.io/lauren-tan-ai/#e30)、[\#77](https://ythx-101.github.io/lauren-tan-ai/#e77)）。
+
+**起源 /control-glass：**通过 Chrome DevTools Protocol 启动 dev build，能点击、输入、读无障碍树、截图、录屏、限速 CPU/网络、抓 CPU profile 和 heap snapshot（[\#20](https://ythx-101.github.io/lauren-tan-ai/#e20)）。
+
+### 两个组成部分 [\#59](https://ythx-101.github.io/lauren-tan-ai/#e59)
+
+### 1. CLI
+
+别让每个 agent 都 “rebuild the world each time”。
+
+把确定性的部分写成脚本，判断留给 agent："I try to extract out the deterministic parts and turn that into code and just leave only the parts that actually require judgment to the agent."（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）
+
+- 可组合（参考 Ousterhout 的 deep modules）
+- 危险命令带 `--dry-run`
+- 用子命令逐步暴露功能
+- 错误信息告诉 agent 该怎么做
+- `--help` 写全
+- 输出 JSON（agent 友好 CLI 的特征，[\#52](https://ythx-101.github.io/lauren-tan-ai/#e52)）
+
+### 2. Feature Map
+
+"a form of materialized memory"
+
+所有功能怎么从用户视角找到、怎么用 CLI 操作、有哪些坑；也是代码库这一“终极记忆”的压缩版（[\#52](https://ythx-101.github.io/lauren-tan-ai/#e52)）。
+
+要每天跑 `/maintain-verification-skill`，因为它过期很快（[\#25](https://ythx-101.github.io/lauren-tan-ai/#e25)）。
+
+**证据比解释可靠。**
+
+> "'I fixed it' isn't good enough. Show me the failing test and the passing test. Show me the before and after video." [\#20](https://ythx-101.github.io/lauren-tan-ai/#e20)
+
+她现在主要看的就是 agent 在自己 VM 里录的视频和截图（[\#70](https://ythx-101.github.io/lauren-tan-ai/#e70) 附近的回复）。
+
+**每一步都能叫停：**"every stage can stop the line"。triage 可以判定“这不是 bug”，repro 可以复现失败，fixer 可以判定“改动风险太高”（[\#20](https://ythx-101.github.io/lauren-tan-ai/#e20)）。
+
+**往上走是形式化方法：**TLA+、Lean、Bend（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)、[\#77](https://ythx-101.github.io/lauren-tan-ai/#e77)），但她自己没走这条路（[T8](https://ythx-101.github.io/lauren-tan-ai/#t8)）。
+
+04 · 约束和 lint：代码库就是记忆
+
+## 每次纠正 agent，都想想怎么让这个问题彻底消失。
+
+架构 \> lint/CI \> 技能/规则 \> 人工 review
+
+> 纠错层级：
+>
+> 1.  "categorically eliminate the problem through better architecture or choice of data structures"
+> 2.  "turn it into a lint rule or test so CI catches it"
+> 3.  "turn it into a skill or rule"
+> 4.  "have humans review the code to catch it (ngmi)"
+>
+> [\#34](https://ythx-101.github.io/lauren-tan-ai/#e34)
+
+**为什么：**agent 会照抄已有的模式，坏模式会 "spread kind of like a virus"（[\#59](https://ythx-101.github.io/lauren-tan-ai/#e59)）。
+
+> "the best rules are in your code. invest accordingly." [\#22](https://ythx-101.github.io/lauren-tan-ai/#e22)
+
+"refactoring your codebase and choosing a tech stack with strong type systems/compiler diagnostics has far greater impact than AGENTS.md and tweaking your skills."（[\#22](https://ythx-101.github.io/lauren-tan-ai/#e22)）
+
+### Dune
+
+"the shortest path is the best path"
+
+Grok Bot 的自研 Electron 客户端框架，没有开源。agent 爱走捷径，那就让捷径就是正确的路（[\#30](https://ythx-101.github.io/lauren-tan-ai/#e30)）。
+
+- **起因：**早期 Grok Bot 有 "eight god files… at least 10,000 lines"（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）；她做了 600 多个重构 PR（[\#30](https://ythx-101.github.io/lauren-tan-ai/#e30)）。
+- **规则：**功能各占一个目录；main 和 renderer 进程之间的 import 依赖图由 CI 检查；**禁用 useEffect**；**禁用代码注释**，理由："agents were just using the comments around the code as justification for why it wasn't going to solve the actual problem"（[\#30](https://ythx-101.github.io/lauren-tan-ai/#e30)、[\#59](https://ythx-101.github.io/lauren-tan-ai/#e59)）。
+- **效果：**PM、设计师、GTM 也能直接提 PR；"it's actually very annoying to write code in… but agents absorb all of that annoyance"（[\#30](https://ythx-101.github.io/lauren-tan-ai/#e30)）。
+
+### 园丁
+
+"every weed you pull becomes a rule, so it can't grow back."
+
+（[\#40](https://ythx-101.github.io/lauren-tan-ai/#e40)）她的做法：一个 agent 一直扫 React 的禁用模式，但**不直接修**，而是追加到一个文档里；她每隔几天看一次，找出共同根因再派活（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）。
+
+### /correct 与 TTR
+
+/correct（0.15.9，[\#65](https://ythx-101.github.io/lauren-tan-ai/#e65)）从历史中挖出 agent 反复犯的错误类型，按“架构 → 类型/lint/CI → 测试 → 文档”的顺序修掉。她用盆景比喻：提交像疯长的盆景，要用约束有意识地修剪。
+
+衡量指标思路 TTR："time to (fully automated, hands off) rewrite"（[\#71](https://ythx-101.github.io/lauren-tan-ai/#e71)）。
+
+**对 slop 的立场：**
+
+> "you are a software engineer… and now you can't do anything about it?" [\#77](https://ythx-101.github.io/lauren-tan-ai/#e77)
+
+> "agents are like a mirror. If you guide it and constrain it well, it can produce code you consider good." nitter 回复
+
+05 · 像管团队一样管 agent
+
+## agent 是永远失忆、但很好教的新员工。
+
+她在 Netflix 当过约两年的 EM，在 Meta 当过 React 的 EM，后来又回到 IC。
+
+> "Agents are like new hires in a constant state of amnesia and idiocy. They don't remember what you tell them, and they never really learn anything new. But we can equip them with rules, skills, tools, and long term memory which can approximate that. They're capable yet stupid, and very teachable." [\#13](https://ythx-101.github.io/lauren-tan-ai/#e13)
+
+**管理杠杆：**
+
+> "*High Output Management* calls this idea 'managerial leverage'. Applied to agents, it's the idea that humans can do the work once by authoring reusable skills and tools, and increase the output of your whole agent team." [\#20](https://ythx-101.github.io/lauren-tan-ai/#e20)
+
+**Netflix 的 "context not control"：**靠给上下文，而不是靠微操；教 agent 自己去取上下文（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）。
+
+**信任和放手：**"when you have little trust, you must micromanage each and every agent. When you can let go, you can delegate more. this is exactly like managing people!"（[\#10](https://ythx-101.github.io/lauren-tan-ai/#e10)）
+
+### 米其林厨房，不是软件工厂
+
+"I'm not a fan of the term software factory. I like the analogy of a Michelin kitchen better"
+
+（[\#59](https://ythx-101.github.io/lauren-tan-ai/#e59)）家庭厨师 → 一家人挤在厨房 → 主厨（"the CEO of the kitchen"）→ 像 Gordon Ramsay 一样开连锁店，每个大项目就是一家店（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）。
+
+### 评审改为抽样
+
+"you cannot be tasting every single dish… So it becomes more about sampling"
+
+像质检员一样；只有多个 agent 犯同样的错时才去改环境（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）。
+
+### 其他值得一提的习惯
+
+- 先让 agent 用自己的话复述你的目标（[\#62](https://ythx-101.github.io/lauren-tan-ai/#e62)、[\#55](https://ythx-101.github.io/lauren-tan-ai/#e55)）。
+- 写作坚持自己写："i still strongly believe that writing is thinking… words become the interface between you and the genie"（[\#78](https://ythx-101.github.io/lauren-tan-ai/#e78)）。
+- 领域知识更重要了："the bottleneck is no longer the agent… it becomes your ability to express your intent"（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）。
+- 盯着 agent 的思考块找失败模式："When I'm in the loop, I pay close attention to the chat, especially thinking blocks."；"If a script can do it deterministically, use the script."（[\#20](https://ythx-101.github.io/lauren-tan-ai/#e20)）
+
+06 · pstack 和 /poteto-mode
+
+## 把观察到的失败模式，全部变成技能。
+
+名字在调侃 YC CEO Gary Tan 的 gstack（两人同姓，没有亲属关系）（[\#30](https://ythx-101.github.io/lauren-tan-ai/#e30)）
+
+> "pstack teaches agents to be more rigorous using multiple models. I've taken all the failure modes I've observed and turned them into skills." [\#13](https://ythx-101.github.io/lauren-tan-ai/#e13)
+
+定位是 "my personal set of skills and engineering principles"；"The goal is not maximal LOC, but the opposite: maximum impact with the least amount of code."（[\#13](https://ythx-101.github.io/lauren-tan-ai/#e13)）
+
+### 结构
+
+README / Barnaby 统计 0.15.9：
+
+- 一个路由器 /poteto-mode
+- 23 个 playbook、二十几个技能、24 条原则技能
+- 2 个子 agent：poteto-agent、Comment Sicko
+- Benny 自动化包（默认不启用）
+
+### 用法
+
+任务开头加上 `/poteto-mode`，例如：
+
+"/poteto-mode i'm going to bed. land the stack even if ci flakes. i want everything merged by morning."
+
+按 Opt+Enter 可以设成 Custom Mode 常驻；配合 Cursor 的 `/loop` 可以连续工作好几个小时（README）。
+
+### 常用技能
+
+/how、/why（并行查 git、工单、文档、Slack、Datadog、Sentry、数仓）、/recall（从历史对话恢复上下文）、/teach、/architect（多模型族给出竞争方案，再由另一个模型当裁判）、/arena、/swarm、/interrogate（多模型对抗评审）、/tdd、/unslop、/reflect、/figure-it-out、/show-me-your-work（只追加的决策日志 TSV）、/automate-me（从你的对话记录生成你自己的 -mode）、/correct、/benchmark-checklist、/in-your-own-words、/ketchup、/poteto-help、/make-bot-ui。
+
+**规划观：**"personally, i don't believe in planning. the best spec is code."（README）
+
+> "Prototyping is planning, but with code." "abstract plans only give you the illusion of progress." [\#55](https://ythx-101.github.io/lauren-tan-ai/#e55)
+
+**技能要经过 eval：**eval playbook 是盲测的，子 agent 的目录名故意起得不让它察觉自己在被评估，因为 "agents can actually tell and when they do they change their behavior"；可以用 /loop 爬分到 10/10（[\#30](https://ythx-101.github.io/lauren-tan-ai/#e30)）。"for my own skills in pstack I also do run evals on them"（nitter 回复 Geoffrey Huntley）。
+
+**技能会越来越短：**"skills from last year were really more about… exact script commands… with the latest models you can just delete those parts and just really focus on the workflow"（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）。
+
+**各自打造自己的刀：**"every chef has their own set of knives, you should too or just use pstack heheh"（[\#19](https://ythx-101.github.io/lauren-tan-ai/#e19)）；"fork it. improve it. make it yours."（README）
+
+### 软件工厂 / 米其林厨房和 Benny
+
+早期说法："true agent parallelism, like in a dark factory for software, might be possible"（[\#13](https://ythx-101.github.io/lauren-tan-ai/#e13)）。Benny 三段式（[\#13](https://ythx-101.github.io/lauren-tan-ai/#e13)、[\#20](https://ythx-101.github.io/lauren-tan-ai/#e20)）：
+
+01
+
+Slack 报告进来
+
+### Triage 分诊
+
+读截图和视频、查重、查 git 历史、查 Notion 判断“是 bug 还是设计如此”，必要时追问报告人。
+
+02
+
+云端 Cursor
+
+### Repro 复现
+
+用 computer use 照着报告人的路径走，必须连续两次复现到坏状态，并录屏。之后人有机会否决。
+
+03
+
+draft PR
+
+### Fix 修复
+
+能写测试就先写测试，做最小改动，对比前后，开 draft PR，附视频。
+
+**迁移的经验（StyleX，[\#20](https://ythx-101.github.io/lauren-tan-ai/#e20)）：**一次性的 40 万行巨型 PR，dogfood 时仍然暴露出 z-index 和优先级问题。于是改成每天迁移一个叶子组件，在三套主题和各种交互状态下比对 computed style。"catch defects at the lowest value stage"。
+
+> "our job is not merely to produce software any longer… but the machine that writes the software. this idea of a software factory, or a Michelin kitchen as i like to call it" 她后来对“工厂”的定义，[\#72](https://ythx-101.github.io/lauren-tan-ai/#e72)
+
+现在的 PR 主要来源：重构、性能、bug 修复；"most of the volume of PRs i land are refactoring"（[\#70](https://ythx-101.github.io/lauren-tan-ai/#e70)、[\#73](https://ythx-101.github.io/lauren-tan-ai/#e73)、nitter 回复）。PR 尽量原子化，不设硬上限，因为 "the git history is a very rich source of context"（[\#30](https://ythx-101.github.io/lauren-tan-ai/#e30)）。
+
+07 · 两个循环
+
+## Grok Bot 是外环，Cursor Projects 是内环。
+
+"cursor projects are my inner loop and grok bot is my outer loop"（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）
+
+### 外环 · Grok Bot
+
+盯 Slack、X、邮件、Linear，发现相关问题就发给对应的 Cursor Project。
+
+"I have the equivalent of like more than 10 chiefs of staff…"
+
+"…one that's working on performance… one that's working on fixing bugs that users report… one that's exploring rewriting it in a different language just for fun"（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）
+
+### 内环 · Cursor Projects
+
+协调者 agent "doesn't do the work itself. It delegates and orchestrates"。
+
+它会把 30 个相关报告合在一起找共同根因，而不是开 30 个互不相干的修复（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）。
+
+**每天跑的 loop（[\#68](https://ythx-101.github.io/lauren-tan-ai/#e68)）：**
+
+> 1.  "watch this slack channel for feedback…"
+> 2.  "create a ticket for this in Linear"
+> 3.  "create a Cursor cloud agent to triage and reproduce the issue on its own computer, using pstack"
+> 4.  "if the issue clearly reproduces, put up a fix and fuzz the pull request with a small swarm of agents"
+> 5.  "if the fuzz has no issues, ping me on Slack, and rebase and auto-merge the PR after 1 hour unless i request changes"
+
+**发版和 QA（[\#69](https://ythx-101.github.io/lauren-tan-ai/#e69)）：**sandcastle（发版经理 bot）在 Slack 里私信每位贡献者确认 PR → 构建 → 10 多个 Grok 4.7 xhigh agent 组成 fuzz 蜂群（有定向测试，也有“混沌猴子”）→ @工程师 bot poteto 开一个 Cursor Project 修高优先级问题 → 必要时 cherry-pick 发补丁版本。
+
+**X 上的反馈：**回复她 X 提及的 bot 把问题转到 Slack，另一个 bot 用 pstack 复现并修复（nitter 回复 2108253488451100877）。
+
+**入门方式：**Dr Eggbot（生成高质量 bot 的 bot）→ 让它建一个工程师 bot → 跑 /create-verification-skill → 设每日 routine 跑 /maintain-verification-skill（[\#52](https://ythx-101.github.io/lauren-tan-ai/#e52)、[\#74](https://ythx-101.github.io/lauren-tan-ai/#e74)）。
+
+**在 Grok Bot 里的提示方式**（bot 只当协调者，保持自己的上下文干净，[\#52](https://ythx-101.github.io/lauren-tan-ai/#e52)）：
+
+> "spawn a cloud agent to use /poteto-mode to build … use /control-app to verify your changes and show me a video and screenshots as proof"
+
+**不需要什么“公司大脑”：**"Some people call this like a company brain… I personally don't think you need anything that sophisticated here because agents are really good at using tools."（[\#59](https://ythx-101.github.io/lauren-tan-ai/#e59)）
+
+08 · token 成本
+
+## 前期把 token 花在环境上，长期反而省。
+
+日期均为 2026 年
+
+1.  05-25
+
+    "using multiple agents, especially frontier ones, use a lot of expensive tokens. i'm hopeful that future versions Composer can change that."（[\#14](https://ythx-101.github.io/lauren-tan-ai/#e14)）
+
+2.  06-10
+
+    "i think of it as moving the tokens you would've otherwise spent on reworking things earlier. measure twice, cut once"（[\#18](https://ythx-101.github.io/lauren-tan-ai/#e18)）
+
+3.  07-29
+
+    便宜又快的模型（Grok 4.5 fast）让每个 PR 都能跑“验证蜂群”（[\#24](https://ythx-101.github.io/lauren-tan-ai/#e24)）
+
+4.  08-12
+
+    "obviously, you know, I work at a AI lab where we have unlimited tokens… I think to me it's a question of ROI"
+
+    前期重构很费 token，但能让“最笨的 agent”也写出好代码，不用多招人（[\#30](https://ythx-101.github.io/lauren-tan-ai/#e30)）
+
+5.  08-23
+
+    routine 别设太频繁，周期任务交给新开的 bot（[\#41](https://ythx-101.github.io/lauren-tan-ai/#e41)）
+
+6.  08-25
+
+    "an efficient model like Grok 4.6 non fast is key"（[\#43](https://ythx-101.github.io/lauren-tan-ai/#e43)）
+
+7.  08-27
+
+    "i probably average about 15b tokens / day"（自述，[\#45](https://ythx-101.github.io/lauren-tan-ai/#e45)）
+
+8.  09-12
+
+    预算有限就用 /setup-pstack 选便宜模型；pstack 少出 bug 也是省钱（[\#57](https://ythx-101.github.io/lauren-tan-ai/#e57)、[\#58](https://ythx-101.github.io/lauren-tan-ai/#e58)）
+
+9.  10-02
+
+    full autopilot 给每个 PR 配约 10 个 verifier，"quite token intensive. You can tune this… instead of like 10 verifier agents you might do like one"（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）
+
+10. 10-04
+
+    "if you spend the tokens upfront to improve your agents' environment so they fall into a pit of success, you'll spend less tokens in the long run"（[\#66](https://ythx-101.github.io/lauren-tan-ai/#e66)）
+
+11. 10-07
+
+    /setup-pstack 可以设预算；验证本身就是 token 效率（nitter 回复 2107949669695582437、2107922229711585334）
+
+12. 10-08
+
+    "i think about this in terms of cost per intelligence… what looks exorbitant today will likely be affordable in 6 moths to a year"（[\#72](https://ythx-101.github.io/lauren-tan-ai/#e72)）
+
+13. 10-11
+
+    pstack 瘦身 10%（"less tokens"）（[\#76](https://ythx-101.github.io/lauren-tan-ai/#e76)）
+
+14. 11-03
+
+    "i now consider adversarial reviews mostly a waste of tokens. far better to use those tokens on empirical combined with formal verification"（[\#88](https://ythx-101.github.io/lauren-tan-ai/#e88)）
+
+15. 11-06
+
+    "the more deterministic the better (and token efficient)"；确定性检查一次性花 token，之后由代码执行（[\#91](https://ythx-101.github.io/lauren-tan-ai/#e91)、[\#93](https://ythx-101.github.io/lauren-tan-ai/#e93)）
+
+16. 11-11
+
+    AIE 演讲：她现在大部分 token 花在验证上（运行时验证、TLA+、Lean、UI 属性测试）（[\#95](https://ythx-101.github.io/lauren-tan-ai/#e95)）
+
+17. 第三方
+
+    Rob Shocks 实测：用 pstack 约 1 小时，不用约 30 分钟，更费 token，但抓到 3 处 agent 幻觉（[T4](https://ythx-101.github.io/lauren-tan-ai/#t4)）
+
+09 · 需要注意 / 未核实
+
+## 流传最广的几句话，她本人没说过。
+
+### ⚠️ 病毒式营销帖
+
+X 上有不少帖子（如 @0xMovez、@sheemamoto、@proAlishke）声称她说过 **“Chief of Staff + 3 managers + 16 workers”**、**“只有 1% 的人用对了 GrokBot”**、**“\$850,000 offer”**等，还有所谓 “GrokBot Agent Team Harness” 文件。
+
+核对了两份完整逐字稿（Maven 工作坊、Matt Pocock 访谈），都没有这些原话。她本人只说过 "more than 10 chiefs of staff, each working on a different area"（Pocock 访谈），以及“可以做一个 mother bot 来生成你的 chief of staff”（[\#50](https://ythx-101.github.io/lauren-tan-ai/#e50)）。以上说法应视为第三方二次加工。
+
+### 关于“产量”数字（都是自述，未核实）
+
+- 2026-07 约 1,000 个 PR（[\#37](https://ythx-101.github.io/lauren-tan-ai/#e37)、[\#30](https://ythx-101.github.io/lauren-tan-ai/#e30)）。
+- 2026-08 约 2,000（Pt.1、演讲口播）；**X 标题写 2,500**；Pt.2 提到 8 月底是 2,462（[T4](https://ythx-101.github.io/lauren-tan-ai/#t4) 转述）。[T8](https://ythx-101.github.io/lauren-tan-ai/#t8) 也指出了标题和口播的差别。
+- 工作坊（08-12）时：上月 1,000，本月到 12 号已近 800。
+- 7/20 以来 2174 个 PR，中位数 +177/−29，平均 +746/−394（[\#38](https://ythx-101.github.io/lauren-tan-ai/#e38)）。
+- 她自己强调：2,500 个 PR 不等于 2,500 个功能，大量是“园丁”式工作（[\#64](https://ythx-101.github.io/lauren-tan-ai/#e64)）；volume 只有建立在信任上才有意义（[\#72](https://ythx-101.github.io/lauren-tan-ai/#e72)）。
+
+### 没能确认的内容
+
+- 5/8 的 /orchestrate 推文：只在《How I Use Cursor》里以引用形式出现，没找到独立链接，作者账号（她本人还是 @cursor_ai）未确认（[\#11](https://ythx-101.github.io/lauren-tan-ai/#e11)）。
+- "four comma club"（[\#61](https://ythx-101.github.io/lauren-tan-ai/#e61)）的配图没读到，“token 破万亿”是推测。
+- Grok Bot 工作坊（ONeM6YDmvqA）就是 Maven 08-12 那场的转载，不是另一场活动（[\#31](https://ythx-101.github.io/lauren-tan-ai/#e31)）。
+- 播客：除 Matt Pocock 直播外，没找到其他正式播客。Open Pstack 提到一场“与 Denis Labelle 的 55 分钟访谈”，但没找到原始链接，未收录。
+- "Complete Guide to pstack Pt. 3" 截至今天还没发布（Pt.2 结尾写着 "stay tuned for Part 3"）。
+- 她的个人博客（no.lol）是旧站，没有 AI 相关内容。
+
+条目索引 · 共 99 条
+
+## 按时间查原帖。
+
+X 内容通过 nitter.cf 镜像读取（x.com 本身打不开），链接给的是 x.com 原帖。日期按 X/nitter 显示的 UTC 记，和北京时间可能差一天。
+
+### 2025 年 1 条
+
+1.  **\#1** · 2025-04 （她在 2026-06 长文里回忆）开源
+
+    #### React Compiler 的玩具 MCP
+
+    最早的想法：agent 应该拿到和人类工程师一样的信号（编译器诊断、lint、静态分析）；后来她认为 MCP 这个载体选错了。
+
+    [GitHub · react#32859](https://github.com/react/react/pull/32859)
+
+### 2026 年 1 月 2 条
+
+1.  **\#2** · 01-22 长文
+
+    #### "deepcoding"
+
+    反对 vibecoding 的“痛苦金字塔”，主张把金字塔倒过来：先把上下文和指导塞进去，再让 agent 写代码；她为此做了一个 Claude Code 插件。
+
+    [X 原帖](https://x.com/poteto/status/2014257661035094246)
+
+2.  **\#3** · 01-23 长文
+
+    #### "Coding is Dead, Long Live Engineering"
+
+    写代码已死，工程更重要；不会用 AI 是 “skill issue”；用 Factorio 比喻：从拿镐子挖矿变成造自动化工厂。
+
+    [X 原帖](https://x.com/poteto/status/2014823103239749881)
+
+### 2026 年 2 月 2 条
+
+1.  **\#4** · 02-16 推文
+
+    #### "claude is the perfect manager. codex is the perfect coder."
+
+    Claude Code 时期的多模型分工观。
+
+    [X 原帖](https://x.com/poteto/status/2023244082303447256)
+
+2.  **\#5** · 02-27 推文（回复）
+
+    #### "the brain setup is pretty simple…"
+
+    noodle 的 brain：纠正 Claude 后跑 /reflect，用 /ruminate 从历史对话里提炼经验，再用 /meditate 把原则写回技能。
+
+    [X 原帖](https://x.com/poteto/status/2027489010550247465)
+
+### 2026 年 3 月及年初 3 条
+
+1.  **\#6** · 03-03 推文（回复）
+
+    #### "codex almost always finds some glaring bug that claude missed"
+
+    多模型对抗式评审有效；评审双方都靠一套原则（noodle/brain/principles）约束。
+
+    [X 原帖](https://x.com/poteto/status/2028693723593552037)
+
+2.  **\#7** · 03-03 推文（回复）
+
+    #### "I regularly hit 100% weekly usage on claude"
+
+    用另一个模型做评审，部分原因是分摊 Claude 的用量上限。
+
+    [X 原帖](https://x.com/poteto/status/2028663223055204464)
+
+3.  **\#8** · 2026 年初（持续维护）开源
+
+    #### poteto/noodle — "Orchestrate agents using skills"
+
+    离开 Meta 后在 Claude Code 之上写的、基于技能的 Go 编排器；pstack 的前身，brain 目录记录了早期技能。
+
+    [poteto/noodle](https://github.com/poteto/noodle)
+
+### 2026 年 4 月 2 条
+
+1.  **\#9** · 04-21 推文
+
+    #### "got accepted to Claude for OSS but still got charged 🙃"
+
+    当时仍是 Claude 付费用户。
+
+    [X 原帖](https://x.com/poteto/status/2046633916585611655)
+
+2.  **\#10** · 04-25 推文
+
+    #### "the value of orchestrating many agents in parallel comes from going deep, not broad"
+
+    并行的价值在“深”：best-of-N、对抗评审、多 agent 复现同一 bug、不同模型干不同活；信任越多越能放手，"exactly like managing people"。
+
+    [X 原帖](https://x.com/poteto/status/2048092593087721736)
+
+### 2026 年 5 月 6 条
+
+1.  **\#11** · 05-08 （在 5/25 长文中引用）开源/推文
+
+    #### "Introducing /orchestrate…"
+
+    用 Cursor SDK 递归派生 agent 的技能；称内部技能 token 用量降 20%、后端冷启动降 80%（自述）。
+
+    [引用见 \#13](https://ythx-101.github.io/lauren-tan-ai/#e13)
+
+2.  **\#12** · 05-09 推文
+
+    #### "my rube goldberg machine is finally in place. only time will tell if the tokens were well spent"
+
+    Benny 自动化流水线初步搭好。
+
+    [X 原帖](https://x.com/poteto/status/2053014462718988560)
+
+3.  **\#13** · 05-25 长文置顶
+
+    #### "How I Use Cursor"
+
+    在 Meta 用 Claude Code（自费 \$200/月）→ 面试时第一次用 Cursor → 开源 pstack；agent 像“永远失忆的新员工”；验证是瓶颈；Benny 自动修 bug。
+
+    [X 原帖](https://x.com/poteto/status/2058975157503570132)[全文镜像 · tool.lu](https://tool.lu/article/7Qz/preview)
+
+4.  **\#14** · 05-25 推文
+
+    #### "a word of caution if you're price conscious…"
+
+    多 agent、尤其是前沿模型非常烧钱，寄希望于后续 Composer 版本。
+
+    [X 原帖](https://x.com/poteto/status/2059046010966684134)
+
+5.  **\#15** · 05-25 开源
+
+    #### pstack（cursor/plugins）
+
+    MIT 协议，`/add-plugin pstack`；核心是 /poteto-mode；口号 "if you want to go fast, go deep first"。
+
+    [cursor/plugins · pstack](https://github.com/cursor/plugins/tree/main/pstack)
+
+6.  **\#16** · 05-28 推文
+
+    #### "this is why i made pstack use multi-model workflows"
+
+    Opus 擅长管理其他 agent，可以在 Cursor 里用 Opus 编排其他模型。
+
+    [X 原帖](https://x.com/poteto/status/2059793670359204225)
+
+### 2026 年 6 月 5 条
+
+1.  **\#17** · 06-04 推文
+
+    #### "when you can trust your agents, you can ship so much more with confidence!"
+
+    晒近 3 个月提交数排行。
+
+    [X 原帖](https://x.com/poteto/status/2062641880240964068)
+
+2.  **\#18** · 06-10 推文（回复）
+
+    #### "it's definitely quite token intensive to get agents to verify their work"
+
+    验证花的 token 是把返工的 token 提前花掉："measure twice, cut once"。
+
+    [X 原帖](https://x.com/poteto/status/2064787762998546538)
+
+3.  **\#19** · 06-12 推文
+
+    #### "start with nothing. don't download any plugins or skills. no AGENTS.md either."
+
+    先裸用，观察失败模式；重复出现再做成技能，更好的是写成 lint 或改结构让错误不可能发生。
+
+    [X 原帖](https://x.com/poteto/status/2065261102888575028)
+
+4.  **\#20** · 06-24 长文
+
+    #### "Loops You Can Trust"
+
+    借《High Output Management》的“早餐工厂”：验证是限制步骤；/control-glass 的来历；Benny 三段式自动化（triage→repro→fix）；"show me your work"；StyleX 迁移教训。
+
+    [X 原帖](https://x.com/poteto/status/2069824386283319343)
+
+5.  **\#21** · 06-24 开源
+
+    #### pstack/automations/benny
+
+    随长文开源的示例自动化技能包（Slack 问题分诊、复现、修复）。
+
+    [cursor/plugins · benny](https://github.com/cursor/plugins/tree/main/pstack/automations/benny)
+
+### 2026 年 7 月 4 条
+
+1.  **\#22** · 07-18 推文
+
+    #### "organic architecture…"
+
+    面向 agent 的代码库需要硬约束；重构、强类型和编译器诊断比 AGENTS.md 和调技能更有用："the best rules are in your code"。
+
+    [X 原帖](https://x.com/poteto/status/2078527882499150286)
+
+2.  **\#23** · 07-29 推文
+
+    #### "i know volume isn't everything, but i'm just shocked at how productive i am with cursor and cloud agents"
+
+    能信任 agent 时产出可以“指数级”增长。
+
+    [X 原帖](https://x.com/poteto/status/2082555523958976848)
+
+3.  **\#24** · 07-29 推文
+
+    #### "having a good, fast, and cheap model like Grok 4.5 on fast mode changes the calculus"
+
+    模型便宜后，可以给每个 PR 跑“验证蜂群”，以前只敢跑一个 verifier。
+
+    [X 原帖](https://x.com/poteto/status/2082556871358251345)
+
+4.  **\#25** · 07-30 推文
+
+    #### "pstack now includes 2 skills i recommend everyone use or copy"
+
+    发布 /create-verification-skill 和 /maintain-verification-skill；首次提出 Feature Map。
+
+    [X 原帖](https://x.com/poteto/status/2082874054483255805)
+
+### 2026 年 8 月 28 条
+
+1.  **\#26** · 08-11 推文
+
+    #### "Extremely excited to share that we just launched Grok Bot!"
+
+    Grok Bot 发布；她用它管日历、写代码、订午饭；客户端重构到自研的面向 agent 框架 Dune。
+
+    [X 原帖](https://x.com/poteto/status/2087227636590465030)
+
+2.  **\#27** · 08-11 推文
+
+    #### "fun fact: because of Dune, my agents now merge their own PRs"
+
+    她现在的代码评审方式：早上看 agent 已经合进 main 的东西。
+
+    [X 原帖](https://x.com/poteto/status/2087244771849089270)
+
+3.  **\#28** · 08-11 推文
+
+    #### "on track to shipping ~2000 PRs this month" / "586 PRs, +653,041 / −578,815"
+
+    晒 PR 排行和改动行数（自述）。
+
+    [X 原帖](https://x.com/poteto/status/2087311081433964965)
+
+4.  **\#29** · 08-11 推文
+
+    #### "excited to share more about my journey building pstack…"
+
+    预告 Maven 工作坊。
+
+    [X 原帖](https://x.com/poteto/status/2087316343859351974)
+
+5.  **\#30** · 08-12 工作坊
+
+    #### Maven "How Cursor Turned AI Agents Into Better Engineers"（主持 Colin Matthews）
+
+    信任曲线、验证技能 + Feature Map、pstack 来历（名字是在调侃 Gary Tan 的 gstack）、eval playbook、Dune（禁 useEffect、禁注释）、600+ 重构 PR、token ROI。
+
+    [Maven](https://maven.com/p/e23d9c/how-cursor-turned-ai-agents-into-better-engineers)
+
+6.  **\#31** · 08-12 （视频上传日期未知）工作坊录像
+
+    #### YouTube "Lauren Tan workshop XAi Grokbot"
+
+    就是 \#30 那场 Maven 工作坊的转载（逐字稿一致：Colin 主持，“Grok Bot 昨天刚发布”，“今天发布 Grok 4.6”）。
+
+    [YouTube](https://www.youtube.com/watch?v=ONeM6YDmvqA)
+
+7.  **\#32** · 08-13 推文
+
+    #### "worktrees are dead. cloud agents are the future."
+
+    云端 agent 各有自己的电脑，能跑代码、录视频、截图；对每组 PR 跑 Grok 4.6 验证 /swarm 做 fuzz，就能让 agent 在你睡觉时自己合并；"looking more like playing starcraft"。
+
+    [X 原帖](https://x.com/poteto/status/2087977008253071816)
+
+8.  **\#33** · 08-14 推文（回复）
+
+    #### "tell your agent to use the autopilot stack playbook!"
+
+    autopilot-stack 和 full autopilot 两个 playbook 的用途。
+
+    [X 原帖](https://x.com/poteto/status/2088361407666659653)
+
+9.  **\#34** · 08-16 推文
+
+    #### "every time you intervene and correct your agent, you should think about how to eliminate it entirely."
+
+    纠错层级：①架构/数据结构让问题不可能 ②lint/测试进 CI ③技能/规则 ④人工 review（"ngmi"）。
+
+    [X 原帖](https://x.com/poteto/status/2089067865098113024)
+
+10. **\#35** · 08-17 推文（回复）
+
+    #### "your codebase is a form of memory too"
+
+    代码库本身就是记忆。
+
+    [X 原帖](https://x.com/poteto/status/2089166694719922483)
+
+11. **\#36** · 08-18 推文（回复）
+
+    #### Dune vs Cursor Agents Window 的性能
+
+    Cursor 的 PR 速度太高又缺约束；Grok Bot 从零开始，把 Cursor 的教训写成了 Dune 的硬约束。
+
+    [X 原帖](https://x.com/poteto/status/2089592031043879011)
+
+12. **\#37** · 08-19 推文
+
+    #### "i shipped 1000 PRs last month and am on track to doubling that this month"
+
+    方法清单：pstack（内部叫 /lauren-mode）；用 Grok Bot routines 收集外环上下文；/goal、/loop、/swarm 跑 Full Autopilot；全部跑在云端 agent。
+
+    [X 原帖](https://x.com/poteto/status/2090141955695198633)
+
+13. **\#38** · 08-19 推文（回复）
+
+    #### "i read code after it gets merged and course correct by fixing the factory"
+
+    每个 PR 都过验证蜂群；7/20 以来 2174 个 PR，中位数 +177/−29（自述）。
+
+    [X 原帖](https://x.com/poteto/status/2090147276434112518)
+
+14. **\#39** · 08-19 推文（回复）
+
+    #### "the best review is the one that's enforced by your codebase and lint rules"
+
+    代码 owner 的 PR 多为自动批准。
+
+    [X 原帖](https://x.com/poteto/status/2090181049754206370)
+
+15. **\#40** · 08-20 推文
+
+    #### "every team needs a gardener."
+
+    “园丁”比喻：盯着 PR 流里的坏味道；"every weed you pull becomes a rule, so it can't grow back"。
+
+    [X 原帖](https://x.com/poteto/status/2090546476464451907)
+
+16. **\#41** · 08-23 推文
+
+    #### "my number 1 tip for controlling your grok bot usage…"
+
+    别把 routine 设得太频繁（15 分钟一次≈每天近 100 次）；周期任务交给新 bot，别挂在长对话的主 bot（比如 chief of staff）上。
+
+    [X 原帖](https://x.com/poteto/status/2091368467060662497)
+
+17. **\#42** · 08-25 推文
+
+    #### "just took over the 4th all time spot. 6 more days to go to break the 2k PRs world record"
+
+    内部 PR 排行。
+
+    [X 原帖](https://x.com/poteto/status/2092310250464714828)
+
+18. **\#43** · 08-25 推文（回复）
+
+    #### "it uses a lot of tokens, which is why an efficient model like Grok 4.6 non fast is key!"
+
+    选高效模型控制成本。
+
+    [X 原帖](https://x.com/poteto/status/2092284842952249540)
+
+19. **\#44** · 08-26 推文
+
+    #### "Grok Bot is by far the smoothest agent desktop and mobile app"
+
+    团队每天合几百个 PR，性能依然稳定，归功于约束。
+
+    [X 原帖](https://x.com/poteto/status/2092714420296433935)
+
+20. **\#45** · 08-27 推文（回复）
+
+    #### "i probably average about 15b tokens / day"
+
+    token 用量自述（附 cursor.com/@lauren）。
+
+    [X 原帖](https://x.com/poteto/status/2092884264581013952)
+
+21. **\#46** · 08-27 推文
+
+    #### "Build botvillage…"（一整段长提示词）
+
+    公开她给 Grok Bot 的长规格提示词：可视化 bot 转录的像素小镇 + webhook + Tailscale；示范她怎么写 prompt（后来做成 /make-bot-ui）。
+
+    [X 原帖](https://x.com/poteto/status/2093023536558555531)
+
+22. **\#47** · 08-27 推文（回复）
+
+    #### "i still read the code! i have agents constantly look through all the commits…"
+
+    让 agent 扫提交找坏味道 → 加 lint + 修存量 → 护栏够多后基本可以全自动合并。
+
+    [X 原帖](https://x.com/poteto/status/2093108757299638301)
+
+23. **\#48** · 08-27 推文（回复）
+
+    #### "with agents i think volume of output (and quality) does matter"
+
+    产量能体现对工具的掌握。
+
+    [X 原帖](https://x.com/poteto/status/2093052299979739618)
+
+24. **\#49** · 08-28 推文
+
+    #### "if you're new to using pstack, don't forget to run /create-verification-skill!"
+
+    验证技能是建立可信 loop 最重要的一环；每天用 Grok Bot 或 Cursor automation 跑维护。
+
+    [X 原帖](https://x.com/poteto/status/2093414407196012990)
+
+25. **\#50** · 08-28 推文（回复）
+
+    #### "i like to just get bots to make other bots. you can make a mother bot that makes your chief of staff"
+
+    让 bot 生成 bot（Dr Eggbot 的思路）。
+
+    [X 原帖](https://x.com/poteto/status/2093242112255103391)
+
+26. **\#51** · 08-29 推文（回复）
+
+    #### "we have agentic review! most PRs get auto reviewed and approved"
+
+    再加 Bugbot；关键区域仍需人工 review。
+
+    [X 原帖](https://x.com/poteto/status/2093624029504745541)
+
+27. **\#52** · 08-31 长文
+
+    #### "The Complete Guide to pstack Pt. 1"（Verification is all you need）
+
+    怎么做验证技能：小 CLI（Build the Lever）、agent 友好 CLI 的设计原则、用云端 agent 代替 worktree、Feature Map 是 “materialized memory”、Dr Eggbot。
+
+    [X 原帖](https://x.com/poteto/status/2094457600259842065)
+
+28. **\#53** · 08-31 推文（回复）
+
+    #### "the reason i shipped 2000 PRs this month is because i designed the Grok Bot codebase to allow me to do that"
+
+    产量来自代码库设计。
+
+    [X 原帖](https://x.com/poteto/status/2094229449126629468)
+
+### 2026 年 9 月 10 条
+
+1.  **\#54** · 09-03 推文（回复）
+
+    #### "i was trying to cut down tokens"
+
+    精简 pstack 是为了省 token。
+
+    [X 原帖](https://x.com/poteto/status/2095581519566049357)
+
+2.  **\#55** · 09-09 长文
+
+    #### "The Complete Guide to pstack Pt. 2"（The art of supervising someone smarter than you）
+
+    让 agent 用自己的话复述问题；/teach /how /why /recall；README 驱动开发、/technical-writing（Diátaxis）；prototype playbook；/architect；"abstract plans only give you the illusion of progress"。
+
+    [X 原帖](https://x.com/poteto/status/2097732320606507506)
+
+3.  **\#56** · 09-10 推文
+
+    #### "it's here! i've been using Projects for a while…"
+
+    Cursor Projects（协调者 agent）可以管理上百上千个子 agent；她称之为“个人软件工厂 / 米其林厨房”。
+
+    [X 原帖](https://x.com/poteto/status/2098165460714057863)
+
+4.  **\#57** · 09-12 推文（回复）
+
+    #### "if i was on a budget, i'd definitely run /setup-pstack and choose cheaper models"
+
+    预算有限时的建议。
+
+    [X 原帖](https://x.com/poteto/status/2098649778158797128)
+
+5.  **\#58** · 09-12 推文（回复）
+
+    #### "pstack can actually save you from embarrassment and loss of revenue from shipping bugs"
+
+    成本账：少出 bug 也省了修 bug 的 token；成本会随模型下降。
+
+    [X 原帖](https://x.com/poteto/status/2098822005168763279)
+
+6.  **\#59** · 09-21 演讲置顶
+
+    #### "here's how i shipped 2,500 PRs last month to production"
+
+    原定 Cursor Compile London 的演讲，改在 X 免费发布。信任是核心；米其林厨房 \> 软件工厂；验证技能 = CLI + Feature Map；五层信任（代码库→静态分析→规则/Bugbot/技能→风格指南）；Dune；“园丁”；Grok Bot 外环。
+
+    [X 原帖](https://x.com/poteto/status/2102050467505430555)[逐字稿 · prepublish.ai](https://prepublish.ai/youtube-transcript/NjoZoUm85x0)
+
+7.  **\#60** · 09-22 推文（回复）
+
+    #### "my agents merge their own PRs, no human reviews"
+
+    在 Grok Bot 代码库里。
+
+    [X 原帖](https://x.com/poteto/status/2102201638824157449)
+
+8.  **\#61** · 09-28 推文
+
+    #### "this month i joined the four comma club"
+
+    配图未读；从语境推测是 token 用量破万亿（未核实）。
+
+    [X 原帖](https://x.com/poteto/status/2104714676978479423)
+
+9.  **\#62** · 09-29 推文
+
+    #### "this has become one of my most used prompts recently: restate in your own words…"
+
+    后来做成 /in-your-own-words 技能。
+
+    [X 原帖](https://x.com/poteto/status/2104744961904394699)
+
+10. **\#63** · 09-30 推文
+
+    #### "having fun at work (and a lot of tokens) will fix you"
+
+    在 Meta 末期严重倦怠，到 Cursor/SpaceXAI 后恢复。
+
+    [X 原帖](https://x.com/poteto/status/2105336247548006760)
+
+### 2026 年 10 月 23 条
+
+1.  **\#64** · 10-02 访谈
+
+    #### Matt Pocock 直播："LIVE: Poteto (creator of pstack) on shipping 1,000's of PR's a month at SpaceX"
+
+    信任阶梯、“meat proxy”、确定性的部分交给 CLI、Dune 起因（8 个上万行的 god file）、内环/外环、"more than 10 chiefs of staff"、抽样代替逐个 review、full autopilot、可验证性边界。
+
+    [YouTube](https://www.youtube.com/watch?v=MN9dGgmLyso)[她的推文](https://x.com/poteto/status/2106134336705843554)
+
+2.  **\#65** · 10-04 推文
+
+    #### "it's easy to fall into the trap of micromanaging your agents instead of correcting the environment"
+
+    pstack 0.15.9：新增 /correct、/benchmark-checklist，/architect 加入面向 agent 的架构设计；盆景比喻；附一条可直接用的重构提示词。
+
+    [X 原帖](https://x.com/poteto/status/2106542593656111276)
+
+3.  **\#66** · 10-04 推文（回复）
+
+    #### "if you spend the tokens upfront to improve your agents' environment so they fall into a pit of success…"
+
+    前期花 token 改善环境，长期省返工。
+
+    [X 原帖](https://x.com/poteto/status/2106894888814137460)
+
+4.  **\#67** · 10-05 推文
+
+    #### "everything i know about managing agents i learned from the amazing programmers and computer scientists that came before"
+
+    约束让人和 agent 都更自由；大公司的问题现在是所有人的问题；"it's just good engineering"。
+
+    [X 原帖](https://x.com/poteto/status/2106916667599278365)
+
+5.  **\#68** · 10-06 推文
+
+    #### "my favorite use case for Grok Bot is for the first and the last mile"
+
+    first mile：用连接器和 routines 决定做什么；last mile：交给 Cursor 云端 agent；给出一个 5 步每日 loop（Slack→Linear→复现→fuzz→1 小时后自动合并）。
+
+    [X 原帖](https://x.com/poteto/status/2107510472601985336)
+
+6.  **\#69** · 10-06 推文
+
+    #### "i just automated our release and QA process!"
+
+    两个 Team Bot：sandcastle（发版经理）和 poteto（工程师 bot）；10+ 个 Grok 4.7 xhigh agent 做 fuzz，其中几个是“混沌猴子”。
+
+    [X 原帖](https://x.com/poteto/status/2107527180263829827)
+
+7.  **\#70** · 10-06 推文（回复）
+
+    #### "most of my PRs are refactoring, performance improvements, bug fixes" / "i give plenty of direction to my agents in the beginning"
+
+    PR 的构成；开头给足方向，之后靠 pstack 和自我验证。
+
+    [X 原帖](https://x.com/poteto/status/2107538850344296622)
+
+8.  **\#71** · 10-07 推文
+
+    #### "time to (fully automated, hands off) rewrite" or ttr
+
+    一个思想实验：用“全自动重写需要多久”来衡量代码库对 agent 是否友好。
+
+    [X 原帖](https://x.com/poteto/status/2107913381751730352)
+
+9.  **\#72** · 10-08 推文
+
+    #### "volume does matter"
+
+    人人都能成为 “coding machine”；"cost per intelligence"；工程师的工作变成造 "the machine that writes the software"。
+
+    [X 原帖](https://x.com/poteto/status/2108290818746528017)
+
+10. **\#73** · 10-08 推文（回复）
+
+    #### "for me i work on many different projects in parallel…" / "here's where all my PRs come from"
+
+    PR 来源：持续性能优化、用户 bug、为 agent 重构、改进技能、新功能、UI 打磨、harness、开发工具/发版/可观测性、副业。
+
+    [X 原帖](https://x.com/poteto/status/2108279582088671583)
+
+11. **\#74** · 10-09 推文
+
+    #### "if you're new to coding, download my bot and ask it: make me an engineer bot…"
+
+    新手入口：用 Dr Eggbot 生成一个用云端 agent + pstack 的工程师 bot。
+
+    [X 原帖](https://x.com/poteto/status/2108592835046101383)
+
+12. **\#75** · 10-11 推文
+
+    #### "codebases have always contained slop."
+
+    好代码 = 正确、无 bug、运行快且省；agent 写的代码平均来看更好；"the new craft of swe is to figure out how to do this"。
+
+    [X 原帖](https://x.com/poteto/status/2109110547824378140)
+
+13. **\#76** · 10-11 推文
+
+    #### "pstack is now 10% smaller with no loss in behavior!" + "clean code has always come at a cost - performance"
+
+    pstack 瘦身；整洁代码原则来自人维护代码的年代，需要新的“面向 agent 的架构原则”。
+
+    [X 原帖 1](https://x.com/poteto/status/2109116030761230571)[X 原帖 2](https://x.com/poteto/status/2109356992032817621)
+
+14. **\#77** · 10-12 推文
+
+    #### "okay now that we're past that tired discussion…verification" + "something that keeps bothering me is how some people see slop as something that is happening to them"
+
+    最基础的 agent loop 是验证（产出视频/截图等证据）；第二件事："your codebase is memory"，让反模式 "categorically impossible"。
+
+    [X 原帖 1](https://x.com/poteto/status/2109436202554372476)[X 原帖 2](https://x.com/poteto/status/2109699980248408574)
+
+15. **\#78** · 10-13～14 推文
+
+    #### "i love writing. i never let agents write for me." + "/in-your-own-words in pstack 0.15.23"
+
+    写作就是思考；词汇是你和“精灵”之间的接口；新技能让 agent 复述目标。
+
+    [X 原帖 1](https://x.com/poteto/status/2109885001584292091)[X 原帖 2](https://x.com/poteto/status/2110047236369547621)
+
+16. **\#79** · 10-14 推文
+
+    #### "perhaps one of the most durable parts of pstack are its engineering principles"
+
+    pstack 里最耐久的是工程原则：每条 10–20 行的极短技能，大多从她今年纠正 agent 的会话里提炼（如受 @VictorTaelin 启发的 Attack the Premise）；/poteto-mode 只放原则索引，并要求 agent “In your reply, name each principle that shaped a decision and the specific choice it changed”，所以回复末尾常有 Principles Named 一节；也可用 /principle-\<name\> 单独调用。她预计模型越强，pstack 越会压缩成短原则和通用流程。Uncle Bob 引用称其中“encoded very significant wisdom”。
+
+    [X 原帖](https://x.com/poteto/status/2110496830429839869)[principles 文档](https://github.com/cursor/plugins/blob/main/pstack/docs/guide/08-principles.md)
+
+17. **\#80** · 10-16 推文
+
+    #### "how do you trust your agents' work more?" + inverse pyramid
+
+    把“倒金字塔”写成可直接丢给 agent 的清单：①代码库改进（"make the easy thing the right thing"，"categorically eliminate problems through code"）②静态分析（lint、测试、CI、TLA+，最省 token）③散文（注释、规则、AGENTS.md、技能，"use it minimally"）④人工评审（最难扩展）。附一段让 agent 读你的评审记录、用 /recall /correct /architect 找常见坑并重构的提示词。
+
+    [X 原帖](https://x.com/poteto/status/2111133080526495985)
+
+18. **\#81** · 10-18～21 推文
+
+    #### "pstack v0.15.27 ships with a new skill /create-formal-verification-skill!"
+
+    新的元技能：按你想验证的性质生成一个形式化验证技能（TLA+ 建模状态机和并发，或 Rust 里用 Kani 查未定义行为）。她认为形式化验证没普及是因为建模难、规格和代码难同步，而 agent 正好接手这部分苦活，"gives your agents superpowers in writing correct software"；她用它给自己团队的代码建 TLA+ 模型，已找到几个 bug。10-21 补充：先让 agent 画 statechart，再用生成的技能查 bug。
+
+    [X 原帖 1](https://x.com/poteto/status/2111926622278521253)[X 原帖 2](https://x.com/poteto/status/2112736749281759566)
+
+19. **\#82** · 10-24 推文（回复）
+
+    #### "the more capable models get, the less instructions they need"
+
+    她一直在更新并简化 pstack；预计技能会越来越短，"until they're basically just saved prompts"。和 \#79 的“会压缩成短原则”一脉相承。
+
+    [X 原帖](https://x.com/poteto/status/2114099131845423142)
+
+20. **\#83** · 10-26 推文
+
+    #### "so many gems and great tips in this talk from @yminsky about how to improve your codebase for agents"
+
+    她转述 Jane Street Ron Minsky 的演讲：agent 靠反馈成长，类型是最好的反馈之一；"make illegal states unrepresentable"；属性测试、fuzz、确定性仿真；expect tests 让行为可读、缩小评审面；形式化方法过去极贵（seL4 约 25 人年），"but agents change the roi"。
+
+    [X 原帖](https://x.com/poteto/status/2114626630429913383)
+
+21. **\#84** · 10-29 推文（回复）
+
+    #### "this is why we just banned comments in our codebase"
+
+    "agents love justifying their lazy hacks with comments, and before you know it the hack spreads everywhere"。例外只有两类：指向上游 issue / RFC 的链接，以及法律和许可证声明。
+
+    [X 原帖 1](https://x.com/poteto/status/2115644484226777581)[X 原帖 2](https://x.com/poteto/status/2115664844863201667)
+
+22. **\#85** · 10-29 推文
+
+    #### "the /statechart skill in pstack v0.15.36 is now stable and ready for use!"
+
+    /statechart 稳定版：内置一个迷你 TLC 编译器（解析→小 IR→输出 Mermaid），配合 /create-formal-verification-skill 给状态机和分布式系统建模找 bug；也可以用 Pele 按任何风格画图。附图里是她刚找到的 2 个真实 bug。
+
+    [X 原帖](https://x.com/poteto/status/2115880102601101414)
+
+23. **\#86** · 10-30 推文
+
+    #### "code used to arrive one drop at a time… like a violent river"
+
+    AI 给每个工程师一支“弹性劳动力”，代码像湍急的河一样涌来；唯一的适应办法是改造系统，让缺乏上下文的 agent 也能做对："make the easy thing the right thing"，"your codebase is becoming organic architecture"，"design systems, frameworks, and languages to control the chaos"，"the time for mourning coding is long over"。
+
+    [X 原帖](https://x.com/poteto/status/2116191971714953262)
+
+24. **\#87** · 10-31 推文
+
+    #### "here's a short grok bot guide on how i create high quality bots and manage my team"
+
+    用 Dr Eggbot 造 bot；"you don't need a lot of bots. a few good bots"；边教边让 bot 给自己写技能；接好连接器和工具；把你手动复制粘贴的环节交给 bot；像带实习生一样 onboarding；最爱的技巧是语音倾倒信息，最后让它 "restate this in your own words"。
+
+    [X 原帖](https://x.com/poteto/status/2116576229319233596)
+
+### 2026 年 11 月 12 条
+
+1.  **\#88** · 11-03 推文
+
+    #### "i now consider adversarial reviews mostly a waste of tokens"
+
+    "far better to use those tokens on empirical combined with formal verification"。她已让 pstack 少用 /interrogate，以后可能删掉；抽象的代码评审里 agent 只会纠缠 nitpick 和 YAGNI。回复里补充：多轮 agent 评审会把 PR “overcook”——评审者不知道你的目标，作者 agent 又太谄媚、照单全收。这是对她早期“多模型对抗评审”做法的明确转向。
+
+    [X 原帖](https://x.com/poteto/status/2117437607940681849)
+
+2.  **\#89** · 11-04 推文
+
+    #### "how we ship crazy amounts of code (30x'd) without reading it"
+
+    AIE 演讲预告幻灯片：触及 Grok Bot 团队代码的合并 PR 从 6 月 809 涨到 10 月 10,926；冷启动、重启、长对话打字延迟都比 5 月更快；10 月约 230 人至少合过 1 个 PR。她归功于 "agent friendly architecture bets"（数字为团队自述）。
+
+    [X 原帖](https://x.com/poteto/status/2118017093677494706)
+
+3.  **\#90** · 11-05 推文
+
+    #### "while i'm quite bullish on formal methods, i think it's worth tempering expectations"
+
+    形式化验证只能证明“代码符合规格”，而规格来自人想要什么，"nothing can prove that your spec is right, only you can judge"。她做 /statechart 主要是让隐含的状态机变得可读、缩小评审面、在更高层核对意图；模型检查要配合实际运行代码确认。近中期仍要分层：约束和护栏、经验验证、需要的地方再上形式化验证。她的游戏 tibo.dog 里每个子系统都有自己的形式化验证技能。
+
+    [X 原帖 1](https://x.com/poteto/status/2118416074601545968)[X 原帖 2](https://x.com/poteto/status/2118419507685544058)
+
+4.  **\#91** · 11-06～07 推文
+
+    #### "hot take: you don't need a software factory, and i don't love the term. it's just marketing"
+
+    "all you need is good software engineering and investing your tokens in the right places. the more deterministic the better"。次日补充：Grok Bot 团队上月合并 11k PR、每天至少发一个稳定版，但 "it's not a dark factory"；倒金字塔就是把东西推向确定性，"much more affordable and reproducible than spinning up agent swarms for everything"。
+
+    [X 原帖 1](https://x.com/poteto/status/2118613050462728659)[X 原帖 2](https://x.com/poteto/status/2118904450106654888)
+
+5.  **\#92** · 11-08 推文
+
+    #### "knowing the right words is very powerful"
+
+    她零音乐基础，用 Grok Bot 给游戏做音乐和视频：告诉 bot "i lack the vocabulary to describe what i want"，配合 /sharpen，再用 /in-your-own-words 确认它听懂了；做视频时同样让 agent 先出分镜和 animatic。
+
+    [X 原帖](https://x.com/poteto/status/2119313621188849806)
+
+6.  **\#93** · 11-08～09 推文
+
+    #### "use /create-formal-verification-skill to model these state machines, one skill per subsystem"
+
+    接 Steve Ruiz 的“找出应用里所有隐含状态机”，她给下一步提示词：每个子系统一个形式化验证技能，再用 /statechart 画最重要的用户流程。解释：生成的技能（如 /verify-notifications）含一份规格并做模型检查；statechart 让你从用户视角确认流程对不对，"since only you know what your product is supposed to do"；这些确定性检查长期更省 token。
+
+    [X 原帖 1](https://x.com/poteto/status/2119521036660314339)[X 原帖 2](https://x.com/poteto/status/2119606119559782488)
+
+7.  **\#94** · 11-09 推文
+
+    #### "a golden age of software testing and verification"
+
+    "we are entering a renaissance in programming language and runtime research, and a golden age of software testing and verification. it's time to rewrite all software"。
+
+    [X 原帖](https://x.com/poteto/status/2119824409087348984)
+
+8.  **\#95** · 11-11 演讲
+
+    #### AI Engineer Code Summit《All Code Is Slop (Except Mine)》
+
+    约 18 分钟主会场演讲（11-14 上线）。Grok Bot 团队上月约 11,000 个 PR、回滚率约 0.5%（自述）。核心：每次纠正 agent，都把纠正变成代码设计、lint 或测试，而不是 AGENTS.md 里再加一行；Dune 禁 useEffect、禁 main/renderer 互相 import、禁约 99% 的注释；评审变成看验证产物（视频、截图、图、形式化验证）；她大部分 token 花在验证上（运行时验证、TLA+、Lean、Bombadil UI 属性测试）；先修好内环，再自动化外环。
+
+    [YouTube](https://www.youtube.com/watch?v=O_zcc6Xl12g)[X 原帖](https://x.com/poteto/status/2121673563489140863)
+
+9.  **\#96** · 11-14 访谈
+
+    #### YC Lightcone《The Rise Of AI Coworkers》（与 Roman Ugarte）
+
+    她说自己 "the explorer"：探索半年到一年后的软件工程。不用 plan mode；对 /interrogate 式对抗评审 "withdrawn a little bit"，因为有过拟合风险、评审 agent 不懂产品意图；最小的 loop 是让 agent 能像用户一样运行代码检查自己；她的工厂只做维护（性能、bug、体验），不拿来做新功能，"as long as we're building software for humans" 需要人的判断和品味；在 Slack 线程里和同事 + bot 一起做完整个功能、不看 Cursor。
+
+    [YC 文字稿](https://www.ycombinator.com/library/n0-the-rise-of-ai-coworkers)[YouTube](https://www.youtube.com/watch?v=y1-9yeYLJUo)
+
+10. **\#97** · 11-14 推文
+
+    #### "quick fixes considered harmful"
+
+    让 agent 做“最小、最快的改动”可能反而让代码更差：一个看似无害的创可贴会被下一个 agent 复制，很快到处都是。以前手写创可贴是因为没时间，"agents change this calculus. sometimes you want it to fix the root cause instead even if it's more invasive"。
+
+    [X 原帖](https://x.com/poteto/status/2121646643124809848)
+
+11. **\#98** · 11-16 pstack 更新
+
+    #### pstack 0.15.43："shorter skill texts, worker.md, and Opus-first routing capped at xhigh"
+
+    她本人的 PR \#1249：14 条原则、unslop、多个 playbook 大幅缩短；/reflect 改成单文件、不再派子 agent；/architect 只剩短 brief，大设计交给 arena；删除 Orchestrate playbook；新增 worker.md，所有被派出的 agent 先读它（不问人问题、PR 直接 ready）；默认模型改为 Opus 5.5 xhigh，任何角色不超过 xhigh，Fable 5.2 只在点名或 Opus 失败两次后才用。
+
+    [GitHub PR](https://github.com/cursor/plugins/pull/1249)
+
+12. **\#99** · 11-18 长文
+
+    #### "Automate Anything with Grok Bot"
+
+    写给非工程师的自动化方法：自动化 = 目标 + 流程，先想清目标、别把流程当目标；用语音把步骤、注意事项、工具、怎么检查、信息和反馈从哪来都倒给 bot，让它先复述再执行；教它你“不假思索”的判断；给它拿到反馈数据的途径让它自我改进（统一的 ID 让数据能交叉对照）；最后用 routines 让它自动触发。同时发布 Dr Eggbot v2。
+
+    [X 长文](https://x.com/poteto/article/2123159537016533493)[X 原帖](https://x.com/poteto/status/2123159537016533493)
+
+第三方解读 · 13 条
+
+## 别人怎么读她，按发布时间排。
+
+最全的是 T7，最严谨的是 T8。标“仅看过搜索摘要”的未读全文。
+
+1.  **T1** · 2026-08-21 第三方解读
+
+    #### Flavio Copes《A deep dive into pstack》
+
+    安装和用法讲解；SKILL.md 也能在 Claude Code、Codex 里用（仅看过搜索摘要）。
+
+    [flaviocopes.com](https://flaviocopes.com/pstack/)
+
+2.  **T2** · 2026-08-27 第三方解读
+
+    #### Leslie Li《Go Deep First: Notes on Lauren Tan's pstack》
+
+    细读《How I Use Cursor》；"Steal the order, not the plugin"：先验证、后并行。
+
+    [leslieli.dev](https://leslieli.dev/notes/go-deep-first-pstack)
+
+3.  **T3** · 2026-08-27 第三方解读
+
+    #### 小互 XiaoHu《24/7 agent 团队如何成形》
+
+    对 Maven/Grok Bot 工作坊的逐段解读：600+ 重构 PR 换来一夜 20 个自动合并；Dune 让最短路径就是正确路径（后半篇付费，未读）。
+
+    [best.xiaohu.ai](https://best.xiaohu.ai/en/article/cursor-agent-team-24x7)
+
+4.  **T4** · 2026-09-10 第三方解读
+
+    #### The Neuron《pstack explained》
+
+    五条教训：验证是基础设施、Feature Map、上下文工程、用碰现实的方式做规划、先信任后并行；引用 Rob Shocks 的实测：pstack 慢一倍、更费 token，但抓到 3 处幻觉。
+
+    [theneuron.ai](https://www.theneuron.ai/explainer-articles/pstack-explained-lauren-tans-system-for-trustworthy-ai-agents/)
+
+5.  **T5** · 2026-09-22 第三方解读
+
+    #### Gene Gi《Lessons from 2,500 PRs talk》
+
+    演讲要点 7 条速记。
+
+    [genegi.github.io](https://genegi.github.io/posts/lessons-from-potetos-2500-prs-talk/)
+
+6.  **T6** · 2026-10-04 第三方解读
+
+    #### Intelligent Artifact《How Lauren Tan Ships Thousands of PRs a Month》
+
+    Matt Pocock 访谈的结构化摘要（抽样 review、协调者 agent、园丁）。
+
+    [intelligentartifact.com](https://intelligentartifact.com/posts/how-lauren-tan-ships-thousands-of-prs-a-month/)
+
+7.  **T7** · 2026-10-05 第三方解读最全
+
+    #### Barnaby Robson《On pstack》
+
+    最全的第三方整理：6 个心智模型（米其林厨房、信任阶梯、内外环、园丁、手眼和地图、量一百次切一次）+ pstack 0.15.9 完整清单（26 个技能、24 条原则、23 个 playbook、2 个 agent）。
+
+    [barnabyrobson.org](https://barnabyrobson.org/on-pstack/)
+
+8.  **T8** · 2026-10-05 第三方解读
+
+    #### Remy（redreamality）《Trust First, Then Parallel》
+
+    严谨的演讲解读；指出标题写 2,500、口播说约 2,000；明确哪些数字是自述。
+
+    [redreamality.com](https://redreamality.com/blog/lauren-tan-poteto-trust-before-parallel/)
+
+9.  **T9** · 2026-10-09 第三方解读
+
+    #### CocoLoop／V2EX 中文译文《我怎么用 Cursor》
+
+    中文社区转译（仅看过搜索摘要）。
+
+    [cocoloop.cn](https://www.cocoloop.cn/t/topic/21952)
+
+10. **T10** · 持续更新第三方解读
+
+    #### 社区移植：michael-denyer/pstack-claude、ericlitman/open-pstack、backnotprop/pstack、potetos-for-everyone
+
+    pstack 移植到 Claude Code、Codex、Pi 等平台（仅看过搜索摘要）。
+
+    [michael-denyer/pstack-claude](https://github.com/michael-denyer/pstack-claude)
+
+11. **T11** · 2026-11-16 第三方解读
+
+    #### Sulat（JP Caparas）《Grok Bot team shipped 11,000 pull requests in a month》
+
+    AIE 演讲的细致整理：倒金字塔、Dune 的三条禁令、看证据代替看 diff、TLA+/Lean/Bombadil；明确数字是团队自述、演讲没定义回滚口径。
+
+    [news.sulat.com](https://news.sulat.com/2026/11/16/lauren-tan-ai-engineer-talk)
+
+12. **T12** · 2026-11-15 第三方解读
+
+    #### XiaoHu.AI《11,000 PRs a Month, About 0.5% Reverted》
+
+    AIE 演讲长篇解读，含“演讲没讲到的部分”一节（仅看过搜索摘要）。
+
+    [xiaohu.ai](https://xiaohu.ai/en/article/lauren-tan-agent-code-quality)
+
+13. **T13** · 2026-10-24 第三方解读
+
+    #### modernEngineer《Inside pstack》
+
+    pstack 源码级拆解，考证了 /create-formal-verification-skill 实际首发于 0.15.26（仅看过搜索摘要）。
+
+    [modernengineer.dev](https://modernengineer.dev/en/library/pstack-teardown)
+
+内容中的 PR 数、token 数均为她本人自述，未独立核实。整理：青月（X @YuLin807）· 2026-10-14，2026-11-19 更新。

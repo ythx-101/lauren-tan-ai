@@ -10,11 +10,20 @@
 - 内外环：Grok Bot 是外环，Cursor Projects 是内环。
 - pstack：她的个人技能集和工程原则，把观察到的失败模式全部变成技能。
 
+2026 年 10 月中到 11 月的转向（页面 #80–#99）：从多 agent 对抗评审转向确定性检查和形式化验证。
+
+- 对抗评审大多是浪费 token（#88，11-03）："far better to use those tokens on empirical combined with formal verification"；pstack 少用 /interrogate；多轮 agent 评审会把 PR "overcook"。YC 访谈里也说对 /interrogate 式评审 "withdrawn a little bit"（#96）。
+- 形式化验证：/create-formal-verification-skill 按要验证的性质生成技能（TLA+ 建模状态机和并发，Rust 用 Kani）（#81）；/statechart 把隐含的状态机画出来（#85）；每个子系统一个形式化验证技能（#93）。但形式化验证只证明代码符合规格，规格对不对只有人能判断，要分层：约束和护栏、经验验证、需要时再上形式化验证（#90）。
+- 越确定性越好：不需要"软件工厂"，"the more deterministic the better"（#91）；她的工厂只做维护（性能、bug、体验），不拿来做新功能（#96）；倒金字塔：代码库改进 > 静态分析 > 散文 > 人工评审（#80）。
+- pstack 瘦身：0.15.43 技能文本更短，新增 worker.md，默认模型改为 Opus 5.5 xhigh（#98）。
+- AIE 演讲《All Code Is Slop (Except Mine)》（#95）：每次纠正 agent，都变成代码设计、lint 或测试，而不是在 AGENTS.md 里再加一行；她大部分 token 花在验证上（运行时验证、TLA+、Lean、UI 属性测试）；先修好内环，再自动化外环。
+
 ## 页面
 
 - [长文](https://ythx-101.github.io/lauren-tan-ai/): 方法论综合、99 条原帖索引、13 篇第三方解读，主入口；用 `#e1`…`#e99` 定位原帖，`#t1`…`#t13` 定位第三方解读
 - [星云图](https://ythx-101.github.io/lauren-tan-ai/graph.html): 按时间排列的同心盘视图
 - [星系](https://ythx-101.github.io/lauren-tan-ai/galaxy.html): 每条原帖一颗星，按主题聚成星系
+- [全文 Markdown](https://ythx-101.github.io/lauren-tan-ai/llms-full.txt): 长文正文的纯文本版，含全部 99 条原帖索引和 13 篇第三方解读，适合整篇读取
 
 ## 关键外部来源
 
@@ -30,4 +39,4 @@
 
 ## English
 
-A curated Chinese-language guide to how Lauren Tan (@poteto) uses AI coding agents: trust ladder, verification skills, inner/outer loop (Cursor Projects and Grok Bot), and pstack. It indexes 99 of her posts, articles, talks and interviews and 13 third-party write-ups. Numbers are self-reported and unverified.
+A curated Chinese-language guide to how Lauren Tan (@poteto) uses AI coding agents: trust ladder, verification skills, inner/outer loop (Cursor Projects and Grok Bot), and pstack, plus her November 2026 shift from multi-agent adversarial review to deterministic checks and formal verification (TLA+, Kani, Lean, /statechart). It indexes 99 of her posts, articles, talks and interviews and 13 third-party write-ups. Numbers are self-reported and unverified. Full text: https://ythx-101.github.io/lauren-tan-ai/llms-full.txt
